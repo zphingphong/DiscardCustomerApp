@@ -4,6 +4,7 @@ using Xamarin.Forms.Platform.iOS;
 using Xamarin.Forms;
 using com.panik.discard;
 using com.panik.discard.ios;
+using UIKit;
 
 [assembly: ExportRenderer (typeof(SocialLoginScreen), typeof(SocialLoginRenderer))]
 
@@ -20,7 +21,8 @@ namespace com.panik.discard.ios {
 			if (!IsShown) {
 
 				IsShown = true;
-
+				// Style the background page
+				View.BackgroundColor = UIColor.FromPatternImage(UIImage.FromFile("bg.png"));
 				var auth = new OAuth2Authenticator (
 					clientId: App.socialClientId, // your OAuth2 client id
 					scope: App.socialScope, // The scopes for the particular API you're accessing. The format for this will vary by API.

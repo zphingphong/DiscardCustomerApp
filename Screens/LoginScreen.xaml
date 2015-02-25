@@ -5,9 +5,9 @@
 	</ContentPage.Padding>
 	<StackLayout Spacing="10" Padding="20, 0, 20, 0">
 		<StackLayout Padding="20, 30, 0, 60">
-			<Image Source="loginLogo.png" WidthRequest="200" HorizontalOptions="Center" />
+			<Image Source="login-logo.png" WidthRequest="200" HorizontalOptions="Center" />
 		</StackLayout>
-		<Button Text="Log In With Facebook" Clicked="LoginWithFacebook" Style="{StaticResource ButtonWithBoxStyle}" />
+		<Button Text="Log In With Facebook" Clicked="LoginWithFacebook" Style="{StaticResource ButtonWithBoxStyle}" Image="" />
 		<Button Text="Log In With Google" Clicked="LoginWithGoogle" Style="{StaticResource ButtonWithBoxStyle}" />
 	</StackLayout>
 </ContentPage>
