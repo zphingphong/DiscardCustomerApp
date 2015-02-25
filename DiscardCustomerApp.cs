@@ -5,15 +5,22 @@ using Xamarin.Forms;
 namespace com.panik.discard {
 	public class App : Application {
 
+		private static readonly App _instance = new App ();
 		public static string socialClientId;
 		public static string socialScope;
 		public static Uri socialAuthorizeUrl;
 		public static Uri socialRedirectUrl;
 
-		public App () {
+		private App () {
 			// The root page of your application
-			MainPage = new LoginScreen();
+			MainPage = new LoginScreen ();
 //			MainPage = new SocialLoginScreen();
+		}
+
+		public static App instance {
+			get {
+				return _instance; 
+			}
 		}
 
 		protected override void OnStart () {

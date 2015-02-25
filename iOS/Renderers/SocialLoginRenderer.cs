@@ -32,6 +32,7 @@ namespace com.panik.discard.ios {
 					// We presented the UI, so it's up to us to dimiss it on iOS.
 					// App.Instance.SuccessfulLoginAction.Invoke ();
 					DismissViewController (true, null);
+					App.instance.MainPage.Navigation.PopModalAsync();
 
 					if (eventArgs.IsAuthenticated) {
 						// Use eventArgs.Account to do wonderful things

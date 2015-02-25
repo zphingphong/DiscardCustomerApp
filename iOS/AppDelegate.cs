@@ -5,16 +5,13 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace com.panik.discard.ios
-{
+namespace com.panik.discard.ios {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
-	{
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-		{
+	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate {
+		public override bool FinishedLaunching (UIApplication app, NSDictionary options) {
 			global::Xamarin.Forms.Forms.Init ();
 
-			LoadApplication (new App ());
+			LoadApplication (App.instance);
 
 			return base.FinishedLaunching (app, options);
 		}
