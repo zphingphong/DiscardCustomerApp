@@ -9,12 +9,14 @@
     <Import_RootNamespace>com.panik.discard</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)DiscardCustomerApp.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Screens\SocialLoginScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Managers\UserManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DiscardCustomerApp.xaml.cs">
+      <DependentUpon>DiscardCustomerApp.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Screens\" />
@@ -25,6 +27,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Screens\LoginScreen.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)DiscardCustomerApp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

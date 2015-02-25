@@ -33,10 +33,9 @@ namespace com.panik.discard.ios {
 					// App.Instance.SuccessfulLoginAction.Invoke ();
 					DismissViewController (true, null);
 					App.instance.MainPage.Navigation.PopModalAsync();
-					App.instance.userManager.LoginUser();
 
 					if (eventArgs.IsAuthenticated) {
-						// Use eventArgs.Account to do wonderful things
+						App.instance.userManager.LoginUser();
 						string accessToken = eventArgs.Account.Properties ["access_token"];
 					} else {
 						// The user cancelled

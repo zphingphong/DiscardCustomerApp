@@ -3,7 +3,7 @@
 using Xamarin.Forms;
 
 namespace com.panik.discard {
-	public class App : Application {
+	public partial class App : Application {
 
 		private static readonly App _instance = new App ();
 		public static string socialClientId;
@@ -13,6 +13,7 @@ namespace com.panik.discard {
 		public UserManager userManager =  new UserManager();
 
 		private App () {
+			InitializeComponent ();
 			// The root page of your application
 			MainPage = new LoginScreen ();
 		}
