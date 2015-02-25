@@ -16,6 +16,14 @@ namespace com.panik.discard {
 			App.socialRedirectUrl = new Uri ("http://www.facebook.com/connect/login_success.html");
 			await Navigation.PushModalAsync (new SocialLoginScreen ());
 		}
+
+		async void LoginWithGoogle (object sender, EventArgs args) {
+			App.socialClientId = "47378534221-mvmbh9v2a9103iobt76aemqi4vc1r7pq.apps.googleusercontent.com";
+			App.socialScope = "https://www.googleapis.com/auth/userinfo.email";
+			App.socialAuthorizeUrl = new Uri ("https://accounts.google.com/o/oauth2/auth");
+			App.socialRedirectUrl = new Uri ("https://www.google.com/oauth2callback");
+			await Navigation.PushModalAsync (new SocialLoginScreen ());
+		}
 	}
 }
 

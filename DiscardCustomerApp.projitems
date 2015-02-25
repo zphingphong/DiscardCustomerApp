@@ -14,6 +14,7 @@
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Screens\SocialLoginScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Managers\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Screens\" />

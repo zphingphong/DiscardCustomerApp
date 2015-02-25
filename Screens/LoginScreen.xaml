@@ -5,6 +5,6 @@
 	</ContentPage.Padding>
 	<StackLayout Spacing="10">
 		<Button Text="Log In With Facebook" Clicked="LoginWithFacebook" />
-		<Button Text="Log In With Google" />
+		<Button Text="Log In With Google" Clicked="LoginWithGoogle" />
 	</StackLayout>
 </ContentPage>

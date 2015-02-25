@@ -10,11 +10,11 @@ namespace com.panik.discard {
 		public static string socialScope;
 		public static Uri socialAuthorizeUrl;
 		public static Uri socialRedirectUrl;
+		public UserManager userManager =  new UserManager();
 
 		private App () {
 			// The root page of your application
 			MainPage = new LoginScreen ();
-//			MainPage = new SocialLoginScreen();
 		}
 
 		public static App instance {
