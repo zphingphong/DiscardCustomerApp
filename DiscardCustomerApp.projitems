@@ -6,19 +6,21 @@
     <SharedGUID>{B697BCDC-F94E-449D-A14D-CE363DBBD8A2}</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>DiscardCustomerApp</Import_RootNamespace>
+    <Import_RootNamespace>com.panik.discard</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DiscardCustomerApp.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\SocialLoginScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Screens\" />
     <Folder Include="$(MSBuildThisFileDirectory)DataAccesses\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\" />
     <Folder Include="$(MSBuildThisFileDirectory)Managers\" />
+    <Folder Include="$(MSBuildThisFileDirectory)DataObjects\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Screens\LoginScreen.xaml">

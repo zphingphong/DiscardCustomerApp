@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace DiscardCustomerApp.iOS
+namespace com.panik.discard.ios
 {
 	public class Application
 	{
