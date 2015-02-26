@@ -120,13 +120,13 @@
     <BundleResource Include="Resources\Icon-Small-40%402x.png" />
     <BundleResource Include="Resources\Icon-Small-40%403x.png" />
     <BundleResource Include="Resources\loginLogo%402x.png" />
-    <BundleResource Include="Resources\bg.png" />
-    <BundleResource Include="Resources\bg%402X.png" />
     <BundleResource Include="Resources\login-logo.png" />
     <BundleResource Include="Resources\facebook.png" />
     <BundleResource Include="Resources\facebook%402x.png" />
     <BundleResource Include="Resources\google.png" />
     <BundleResource Include="Resources\google%402x.png" />
+    <BundleResource Include="Resources\bg.png" />
+    <BundleResource Include="Resources\bg%402X.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

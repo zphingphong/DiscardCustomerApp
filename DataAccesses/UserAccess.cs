@@ -8,8 +8,6 @@ namespace com.panik.discard {
 		}
 
 		public void CreateUser (UserObj userObj) {
-			userObj.id = "John";
-			userObj.userKey = "TESTKEY";
 			userObj.updateDateTimeObj = DateTime.Now;
 			FileStream fs = new FileStream (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "UserDoc"), FileMode.Create);
 			DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(UserObj));
