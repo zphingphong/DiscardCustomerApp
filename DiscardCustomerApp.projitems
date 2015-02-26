@@ -17,6 +17,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)DiscardCustomerApp.xaml.cs">
       <DependentUpon>DiscardCustomerApp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DataObjects\UserObj.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccesses\UserAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Screens\" />

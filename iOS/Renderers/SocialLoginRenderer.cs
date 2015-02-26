@@ -35,6 +35,7 @@ namespace com.panik.discard.ios {
 					// App.Instance.SuccessfulLoginAction.Invoke ();
 					DismissViewController (true, null);
 					App.instance.MainPage.Navigation.PopModalAsync();
+					App.instance.userManager.LoginUser();
 
 					if (eventArgs.IsAuthenticated) {
 						App.instance.userManager.LoginUser();
