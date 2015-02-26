@@ -15,18 +15,12 @@
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
-		<integer>2</integer>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
@@ -56,5 +50,28 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleDisplayName</key>
 	<string>Discard</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIStatusBarTintParameters</key>
+	<dict>
+		<key>UINavigationBar</key>
+		<dict>
+			<key>Style</key>
+			<string>UIBarStyleDefault</string>
+			<key>Translucent</key>
+			<false/>
+			<key>TintColor</key>
+			<dict>
+				<key>Red</key>
+				<real>1</real>
+				<key>Green</key>
+				<real>0.584313725490196</real>
+				<key>Blue</key>
+				<real>0</real>
+			</dict>
+		</dict>
+	</dict>
+	<key>UIMainStoryboardFile</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>

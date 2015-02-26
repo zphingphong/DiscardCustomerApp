@@ -7,7 +7,7 @@
 		<StackLayout Padding="20, 30, 0, 60">
 			<Image Source="login-logo.png" WidthRequest="200" HorizontalOptions="Center" />
 		</StackLayout>
-		<Button Text="Log In With Facebook" Clicked="LoginWithFacebook" Style="{StaticResource ButtonWithBoxStyle}" Image="" />
-		<Button Text="Log In With Google" Clicked="LoginWithGoogle" Style="{StaticResource ButtonWithBoxStyle}" />
+		<Button Text="Sign in With Facebook" Clicked="LoginWithFacebook" Style="{StaticResource ButtonWithBoxStyle}" Image="facebook.png" HeightRequest="50" />
+		<Button Text="Sign in With Google    " Clicked="LoginWithGoogle" Style="{StaticResource ButtonWithBoxStyle}" Image="google.png" HeightRequest="50" />
 	</StackLayout>
 </ContentPage>
