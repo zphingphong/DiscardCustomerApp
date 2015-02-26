@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace com.panik.discard {
@@ -16,7 +17,15 @@ namespace com.panik.discard {
 		[DataMember]
 		public string email { get; set; }
 		[DataMember]
-		public DateTime updateDateTime { get; set; } // This field is for check syncing time to override fields
+		public string updateDateTime { get; set; } // This field is for check syncing time to override fields
+		public DateTime updateDateTimeObj {
+			get {
+				return DateTime.ParseExact(updateDateTime, "O", CultureInfo.InvariantCulture);
+			}
+			set {
+				updateDateTime = value.ToString ("O", CultureInfo.InvariantCulture);
+			}
+		}
 		[DataMember]
 		public string country { get; set; } // This field will override server on sync
 		[DataMember]
