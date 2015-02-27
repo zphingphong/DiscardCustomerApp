@@ -10,10 +10,10 @@ namespace com.panik.discard {
 		public string id { get; set; }
 		[DataMember]
 		public string userKey { get; set; }
+		[DataMember] // What service does the user use to login [0 = Facebook, 1 = Google]
+		public int loginType { get; set; }
 		[DataMember]
-		public string loginType { get; set; }
-		[DataMember]
-		public string username { get; set; }
+		public string name { get; set; }
 		[DataMember]
 		public string email { get; set; }
 		[DataMember]

@@ -19,6 +19,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DataObjects\UserObj.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccesses\UserAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Screens\" />

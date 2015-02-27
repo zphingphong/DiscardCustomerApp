@@ -24,22 +24,19 @@ namespace com.panik.discard.ios {
 				// Style the background page
 				View.BackgroundColor = UIColor.FromPatternImage(UIImage.FromFile("bg.png"));
 				var auth = new OAuth2Authenticator (
-					clientId: App.socialClientId, // your OAuth2 client id
-					scope: App.socialScope, // The scopes for the particular API you're accessing. The format for this will vary by API.
-					authorizeUrl: App.socialAuthorizeUrl, // the auth URL for the service
-					redirectUrl: App.socialRedirectUrl // the redirect URL for the service
+					clientId: App.instance.userManager.socialClientId, // your OAuth2 client id
+					scope: App.instance.userManager.socialScope, // The scopes for the particular API you're accessing. The format for this will vary by API.
+					authorizeUrl: App.instance.userManager.socialAuthorizeUrl, // the auth URL for the service
+					redirectUrl: App.instance.userManager.socialRedirectUrl // the redirect URL for the service
 				);
 
 				auth.Completed += (sender, eventArgs) => {
 					// We presented the UI, so it's up to us to dimiss it on iOS.
-					// App.Instance.SuccessfulLoginAction.Invoke ();
 					DismissViewController (true, null);
 					App.instance.MainPage.Navigation.PopModalAsync();
-					App.instance.userManager.LoginUser();
 
 					if (eventArgs.IsAuthenticated) {
-						App.instance.userManager.LoginUser();
-						string accessToken = eventArgs.Account.Properties ["access_token"];
+						App.instance.userManager.LoginUser(eventArgs.Account, eventArgs.Account.Properties ["access_token"]);
 					} else {
 						// The user cancelled
 					}

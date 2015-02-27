@@ -8,18 +8,20 @@ namespace com.panik.discard {
 		}
 
 		async void LoginWithFacebook (object sender, EventArgs args) {
-			App.socialClientId = "1553451278264664";
-			App.socialScope = "email";
-			App.socialAuthorizeUrl = new Uri ("https://m.facebook.com/dialog/oauth/");
-			App.socialRedirectUrl = new Uri ("http://www.facebook.com/connect/login_success.html");
+			App.instance.userManager.socialClientId = "1553451278264664";
+			App.instance.userManager.socialScope = "email";
+			App.instance.userManager.socialAuthorizeUrl = new Uri ("https://m.facebook.com/dialog/oauth/");
+			App.instance.userManager.socialRedirectUrl = new Uri ("http://www.facebook.com/connect/login_success.html");
+			App.instance.userManager.loginType = 0;
 			await Navigation.PushModalAsync (new SocialLoginScreen ());
 		}
 
 		async void LoginWithGoogle (object sender, EventArgs args) {
-			App.socialClientId = "47378534221-mvmbh9v2a9103iobt76aemqi4vc1r7pq.apps.googleusercontent.com";
-			App.socialScope = "https://www.googleapis.com/auth/userinfo.email";
-			App.socialAuthorizeUrl = new Uri ("https://accounts.google.com/o/oauth2/auth");
-			App.socialRedirectUrl = new Uri ("https://www.google.com/oauth2callback");
+			App.instance.userManager.socialClientId = "47378534221-mvmbh9v2a9103iobt76aemqi4vc1r7pq.apps.googleusercontent.com";
+			App.instance.userManager.socialScope = "https://www.googleapis.com/auth/userinfo.email";
+			App.instance.userManager.socialAuthorizeUrl = new Uri ("https://accounts.google.com/o/oauth2/auth");
+			App.instance.userManager.socialRedirectUrl = new Uri ("https://www.google.com/oauth2callback");
+			App.instance.userManager.loginType = 1;
 			await Navigation.PushModalAsync (new SocialLoginScreen ());
 		}
 	}

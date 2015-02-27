@@ -6,10 +6,6 @@ namespace com.panik.discard {
 	public partial class App : Application {
 
 		private static readonly App _instance = new App ();
-		public static string socialClientId;
-		public static string socialScope;
-		public static Uri socialAuthorizeUrl;
-		public static Uri socialRedirectUrl;
 		public UserManager userManager =  new UserManager();
 
 		private App () {
