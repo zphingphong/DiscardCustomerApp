@@ -18,7 +18,7 @@ namespace com.panik.discard {
 
 		async void LoginWithGoogle (object sender, EventArgs args) {
 			App.instance.userManager.socialClientId = "47378534221-mvmbh9v2a9103iobt76aemqi4vc1r7pq.apps.googleusercontent.com";
-			App.instance.userManager.socialScope = "https://www.googleapis.com/auth/userinfo.email";
+			App.instance.userManager.socialScope = "email";
 			App.instance.userManager.socialAuthorizeUrl = new Uri ("https://accounts.google.com/o/oauth2/auth");
 			App.instance.userManager.socialRedirectUrl = new Uri ("https://www.google.com/oauth2callback");
 			App.instance.userManager.loginType = 1;

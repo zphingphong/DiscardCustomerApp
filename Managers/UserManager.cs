@@ -3,8 +3,8 @@ using Xamarin.Auth;
 
 namespace com.panik.discard {
 	public class UserManager {
-		private UserAccess userAccess = new UserAccess();
-		private UserService userService = new UserService();
+		private UserAccess userAccess = new UserAccess ();
+		private UserService userService = new UserService ();
 		private UserObj userObj = UserObj.instance;
 
 		public string socialClientId;
@@ -21,12 +21,17 @@ namespace com.panik.discard {
 			userObj.loginType = loginType;
 			userObj.updateDateTimeObj = DateTime.Now;
 			// Make another call to get more user information
-			if (this.loginType == 0) {
-				userService.GetUserInfoFromFacebook (userObj, account, ReceivedUserInfo);
+			switch (this.loginType) {
+				case 0:
+					userService.GetUserInfoFromFacebook (userObj, account, ReceivedUserInfo);
+					break;
+				case 1:
+					userService.GetUserInfoFromGoogle (userObj, account, ReceivedUserInfo);
+					break;
 			}
 		}
 
-		public bool ReceivedUserInfo(){
+		public bool ReceivedUserInfo () {
 			userAccess.CreateUser (userObj);
 			return true;
 		}
