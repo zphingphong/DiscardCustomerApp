@@ -16,7 +16,11 @@ namespace com.panik.discard.droid {
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
 
-			LoadApplication (new App ());
+			LoadApplication (App.instance);
+		}
+
+		public static Context GetAppContext(){
+			return GetAppContext ();
 		}
 	}
 }

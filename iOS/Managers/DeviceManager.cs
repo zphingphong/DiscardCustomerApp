@@ -1,5 +1,4 @@
-﻿using System;
-using com.panik.discard;
+﻿using com.panik.discard;
 using UIKit;
 
 [assembly: Xamarin.Forms.Dependency (typeof (com.panik.discard.ios.DeviceManager))]
