@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Auth;
+using Xamarin.Forms;
 
 namespace com.panik.discard {
 	public class UserManager {
@@ -20,6 +21,7 @@ namespace com.panik.discard {
 			userObj.userKey = userKey;
 			userObj.loginType = loginType;
 			userObj.updateDateTimeObj = DateTime.Now;
+			userObj.deviceId = DependencyService.Get<IDeviceManager> ().GetUniqueID ();
 			// Make another call to get more user information
 			switch (this.loginType) {
 				case 0:

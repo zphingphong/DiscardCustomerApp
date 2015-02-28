@@ -141,6 +141,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\SocialLoginRenderer.cs" />
+    <Compile Include="Managers\DeviceManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />
@@ -157,5 +158,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />
+    <Folder Include="Managers\" />
   </ItemGroup>
 </Project>
