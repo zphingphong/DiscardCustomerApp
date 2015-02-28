@@ -7,6 +7,7 @@ namespace com.panik.discard {
 
 		private static readonly App _instance = new App ();
 		public UserManager userManager =  new UserManager();
+		public static object fileLocker = new object ();
 
 		private App () {
 			InitializeComponent ();
