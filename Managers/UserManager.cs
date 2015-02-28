@@ -12,22 +12,20 @@ namespace com.panik.discard {
 		public string socialScope;
 		public Uri socialAuthorizeUrl;
 		public Uri socialRedirectUrl;
-		public int loginType;
 
 		public UserManager () {
 		}
 
 		public void LoginUser (Account account, string userKey) {
 			userObj.userKey = userKey;
-			userObj.loginType = loginType;
 			userObj.updateDateTimeObj = DateTime.Now;
 			userObj.deviceId = DependencyService.Get<IDeviceManager> ().GetUniqueID ();
 			// Make another call to get more user information
-			switch (this.loginType) {
-				case 0:
+			switch (userObj.loginTypeEnum) {
+				case UserObj.loginTypes.facebook:
 					userService.GetUserInfoFromFacebook (userObj, account, ReceivedUserInfo);
 					break;
-				case 1:
+				case UserObj.loginTypes.google:
 					userService.GetUserInfoFromGoogle (userObj, account, ReceivedUserInfo);
 					break;
 			}
@@ -36,6 +34,10 @@ namespace com.panik.discard {
 		public bool ReceivedUserInfo () {
 			userAccess.CreateUser (userObj);
 			return true;
+		}
+
+		public UserObj GetUserObj(){
+			return userObj;
 		}
 	}
 }
