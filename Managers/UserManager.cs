@@ -33,6 +33,7 @@ namespace com.panik.discard {
 
 		public bool ReceivedUserInfo () {
 			userAccess.CreateUser (userObj);
+			userService.LoginToServerAsync (userAccess.RetrieveUserAsStr());
 			return true;
 		}
 

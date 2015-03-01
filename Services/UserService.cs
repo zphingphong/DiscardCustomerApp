@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Json;
 using System.Threading.Tasks;
 using Xamarin.Auth;
@@ -31,15 +32,20 @@ namespace com.panik.discard {
 				else {
 					string result = t.Result.GetResponseText ();
 					JsonValue resultObj = JsonValue.Parse (result);
-					userObj.email = (string)resultObj ["emails"][0]["value"]; // Get first email
+					userObj.email = (string)resultObj ["emails"] [0] ["value"]; // Get first email
 					userObj.name = (string)resultObj ["displayName"];
 					cb ();
 				}
 			});
 		}
 
-		public async Task<string> LoginToServerAsync () {
-			return "";
+		public async Task<string> LoginToServerAsync (string userJson) {
+			string result = "";
+			using (WebClient wc = new WebClient ()) {
+				wc.Headers [HttpRequestHeader.ContentType] = "application/json";
+				result = await wc.UploadStringTaskAsync (App.SERVER_ENDPOINT + "user/signin", userJson);
+			}
+			return result;
 		}
 	}
 }

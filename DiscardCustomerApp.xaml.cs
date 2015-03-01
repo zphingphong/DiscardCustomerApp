@@ -8,6 +8,7 @@ namespace com.panik.discard {
 		private static readonly App _instance = new App ();
 		public UserManager userManager =  new UserManager();
 		public static object fileLocker = new object ();
+		public const string SERVER_ENDPOINT = "http://192.168.1.71:3000/";
 
 		private App () {
 			InitializeComponent ();

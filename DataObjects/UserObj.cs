@@ -13,7 +13,7 @@ namespace com.panik.discard {
 		private static readonly UserObj _instance = new UserObj ();
 
 		[DataMember]
-		public string _id { get; set; }
+		public string id { get; set; }
 
 		[DataMember]
 		public string userKey { get; set; }
@@ -50,16 +50,16 @@ namespace com.panik.discard {
 				updateDateTime = value.ToString ("O", CultureInfo.InvariantCulture);
 			}
 		}
-
-		[DataMember]
-		public string country { get; set; }
-		// This field will override server on sync
-		[DataMember]
-		public string city { get; set; }
-		// This field will override server on sync
-		[DataMember]
-		public string recentLocation { get; set; }
-		// This field will override server on sync
+		// TODO: Implement these
+//		[DataMember]
+//		public string country { get; set; }
+//		// This field will override server on sync
+//		[DataMember]
+//		public string city { get; set; }
+//		// This field will override server on sync
+//		[DataMember]
+//		public string recentLocation { get; set; }
+//		// This field will override server on sync
 
 		private UserObj () {
 		}
