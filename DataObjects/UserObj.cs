@@ -10,7 +10,7 @@ namespace com.panik.discard {
 			google
 		};
 
-		private static readonly UserObj _instance = new UserObj ();
+//		private static readonly UserObj _instance = new UserObj ();
 
 		[DataMember]
 		public string id { get; set; }
@@ -61,14 +61,17 @@ namespace com.panik.discard {
 //		public string recentLocation { get; set; }
 //		// This field will override server on sync
 
-		private UserObj () {
+		public UserObj () {
 		}
 
-		public static UserObj instance {
-			get {
-				return _instance;
-			}
-		}
+//		public static UserObj instance {
+//			get {
+//				return _instance;
+//			}
+//			set {
+//				_instance = value;
+//			}
+//		}
 	}
 }
 

@@ -1,12 +1,13 @@
 ﻿using System;
 using Xamarin.Auth;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace com.panik.discard {
 	public class UserManager {
-		private UserAccess userAccess = new UserAccess ();
-		private UserService userService = new UserService ();
-		private UserObj userObj = UserObj.instance;
+		private UserAccess userAccess;
+		private UserService userService;
+		public UserObj userObj;
 
 		public string socialClientId;
 		public string socialScope;
@@ -14,6 +15,9 @@ namespace com.panik.discard {
 		public Uri socialRedirectUrl;
 
 		public UserManager () {
+			userAccess = new UserAccess ();
+			userObj = new UserObj ();
+			userService = new UserService ();
 		}
 
 		public void LoginUser (Account account, string userKey) {
@@ -31,14 +35,22 @@ namespace com.panik.discard {
 			}
 		}
 
-		public bool ReceivedUserInfo () {
+		public async Task<bool> ReceivedUserInfo () {
 			userAccess.CreateUser (userObj);
-			userService.LoginToServerAsync (userAccess.RetrieveUserAsStr());
+			UserObj serverUser = await userService.LoginToServerAsync (userAccess.RetrieveUserAsStr ());
+			if (serverUser != null) { // Successfully login server
+				if (userObj.id == null) { // Sign in for the first time from this device
+					userObj = serverUser; // Replace local user with the user downloaded from the server
+					userAccess.CreateUser (serverUser);
+				} else {
+
+				}
+			}
 			return true;
 		}
 
-		public UserObj GetUserObj(){
-			return userObj;
+		public void LoadExistingUser() {
+			userObj = userAccess.RetrieveUserAsObj ();
 		}
 	}
 }
