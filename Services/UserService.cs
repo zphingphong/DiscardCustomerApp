@@ -58,9 +58,23 @@ namespace com.panik.discard {
 				ms.Position = 0;
 				resultUserObj = (UserObj)userJsonSerializer.ReadObject (ms);
 				resultUserObj.id = (string)resultObj ["user"] ["_id"];
-			} else { // Fail to connect to the database | User with the same email address + different device ID existed
+			} else { // Fail to connect to the database
 			}
 			return resultUserObj;
+		}
+
+		public async Task<bool> ChangeDeviceAsync (string userJson) {
+			string result = "";
+			using (WebClient wc = new WebClient ()) {
+				wc.Headers [HttpRequestHeader.ContentType] = "application/json";
+				result = await wc.UploadStringTaskAsync (App.SERVER_ENDPOINT + "user/changedevice", userJson);
+			}
+			JsonValue resultObj = JsonValue.Parse (result);
+			if ((bool)resultObj ["success"]) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 }

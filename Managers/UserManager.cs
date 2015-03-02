@@ -41,17 +41,20 @@ namespace com.panik.discard {
 				if (userObj.id == null) { // Sign in for the first time from this device
 					if (userObj.deviceId != serverUser.deviceId) { // This is not the same device that the user login last time
 						// Ask the user if they are sure to login with this device, they will be logged out from the existing device once that device becomes online
-						var wantDeviceChanged = false;
 						Device.BeginInvokeOnMainThread(async() => {
-							wantDeviceChanged = await ((LoginScreen)App.instance.MainPage).DisplayAlert ("", "Your account is associated with other device. We will clear all data from the other device, once you sign in with this device. Are you sure you would like to sign in?", "Yes", "No");
+							var wantDeviceChanged = await ((LoginScreen)App.instance.MainPage).DisplayAlert ("", "Your account is associated with other device. We will clear all data from the other device, once you sign in with this device. Are you sure you would like to sign in?", "Yes", "No");
+
+							// The user confirmed
+							if (wantDeviceChanged) {
+								// Sign the user in
+								serverUser.deviceToClear = serverUser.deviceId; // Set deviceToClear to the existing device ID
+								serverUser.deviceId = userObj.deviceId; // Set the device ID to the new device ID
+								userObj = serverUser; // Replace local user with the user downloaded from the server with the new ID
+								userAccess.CreateUser (userObj);
+								// Set the new user with user.deviceToClear on the server
+								userService.ChangeDeviceAsync (userObj.ToJson());
+							} // The user declines, do nothing
 						});
-						// The user confirmed
-						if (wantDeviceChanged) {
-							// Sign the user in
-							userObj = serverUser; // Replace local user with the user downloaded from the server
-							userAccess.CreateUser (serverUser);
-							// Set user.deviceToClear on the server
-						} // The user declines, do nothing
 					} else {
 						userObj = serverUser; // Replace local user with the user downloaded from the server
 						userAccess.CreateUser (serverUser);

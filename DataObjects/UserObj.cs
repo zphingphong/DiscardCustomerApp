@@ -42,6 +42,9 @@ namespace com.panik.discard {
 		public string deviceId { get; set; }
 
 		[DataMember]
+		public string deviceToClear { get; set; }
+
+		[DataMember]
 		public string updateDateTime { get; set; }
 		// This field is for check syncing time to override fields
 		public DateTime updateDateTimeObj {
