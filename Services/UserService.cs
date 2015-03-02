@@ -56,6 +56,7 @@ namespace com.panik.discard {
 			if ((bool)resultObj ["success"]) {
 				MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes ((string)resultObj["user"]));
 				resultUserObj = (UserObj)userJsonSerializer.ReadObject (ms);
+				resultUserObj.id = (string)resultObj ["user"] ["_id"];
 			}
 			return resultUserObj;
 		}

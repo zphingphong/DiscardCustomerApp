@@ -42,6 +42,7 @@ namespace com.panik.discard {
 					userObj = serverUser; // Replace local user with the user downloaded from the server
 					userAccess.CreateUser (serverUser);
 				} else {
+					//TODO: we may have to do something else later, in case that the datetime is not the same, but we overwite local, for now
 					if(!userObj.updateDateTimeObj.Equals(serverUser.updateDateTimeObj)){ // Update time is different, overwrite local user object
 						userObj = serverUser; // Replace local user with the user downloaded from the server
 						userAccess.CreateUser (serverUser);
