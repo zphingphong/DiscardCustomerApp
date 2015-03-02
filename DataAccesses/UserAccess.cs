@@ -34,6 +34,9 @@ namespace com.panik.discard {
 				}
 			}
 		}
+
+		public void UpdateUser (UserObj userObj){
+		}
 	}
 }
 

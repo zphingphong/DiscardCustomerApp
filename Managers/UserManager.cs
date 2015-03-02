@@ -35,18 +35,20 @@ namespace com.panik.discard {
 			}
 		}
 
-		public async Task<bool> ReceivedUserInfo () {
-			userAccess.CreateUser (userObj);
-			UserObj serverUser = await userService.LoginToServerAsync (userAccess.RetrieveUserAsStr ());
+		public async Task<UserObj> ReceivedUserInfo () {
+			UserObj serverUser = await userService.LoginToServerAsync (userObj.ToJson());
 			if (serverUser != null) { // Successfully login server
 				if (userObj.id == null) { // Sign in for the first time from this device
 					userObj = serverUser; // Replace local user with the user downloaded from the server
 					userAccess.CreateUser (serverUser);
 				} else {
-
+					if(!userObj.updateDateTimeObj.Equals(serverUser.updateDateTimeObj)){ // Update time is different, overwrite local user object
+						userObj = serverUser; // Replace local user with the user downloaded from the server
+						userAccess.CreateUser (serverUser);
+					}
 				}
 			}
-			return true;
+			return userObj;
 		}
 
 		public void LoadExistingUser() {

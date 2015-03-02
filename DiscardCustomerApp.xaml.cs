@@ -18,6 +18,7 @@ namespace com.panik.discard {
 			// Show login page only if no local user exist
 			if (File.Exists (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "UserDoc"))) {
 				userManager.LoadExistingUser ();
+				MainPage = new LoginScreen (); // TODO: Change this to the main page, skip the login process, but still load data from the server if there's Internet
 			} else {
 				MainPage = new LoginScreen ();
 			}

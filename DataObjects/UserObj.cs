@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Globalization;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace com.panik.discard {
 	[DataContract]
@@ -62,6 +64,12 @@ namespace com.panik.discard {
 //		// This field will override server on sync
 
 		public UserObj () {
+		}
+
+		public string ToJson(){
+			MemoryStream ms = new MemoryStream();
+			new DataContractJsonSerializer (typeof(UserObj)).WriteObject (ms, this);
+			return new StreamReader (ms).ReadToEnd ();
 		}
 
 //		public static UserObj instance {
