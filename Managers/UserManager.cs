@@ -39,8 +39,23 @@ namespace com.panik.discard {
 			UserObj serverUser = await userService.LoginToServerAsync (userObj.ToJson());
 			if (serverUser != null) { // Successfully login server
 				if (userObj.id == null) { // Sign in for the first time from this device
-					userObj = serverUser; // Replace local user with the user downloaded from the server
-					userAccess.CreateUser (serverUser);
+					if (userObj.deviceId != serverUser.deviceId) { // This is not the same device that the user login last time
+						// Ask the user if they are sure to login with this device, they will be logged out from the existing device once that device becomes online
+						var wantDeviceChanged = false;
+						Device.BeginInvokeOnMainThread(async() => {
+							wantDeviceChanged = await ((LoginScreen)App.instance.MainPage).DisplayAlert ("", "Your account is associated with other device. We will clear all data from the other device, once you sign in with this device. Are you sure you would like to sign in?", "Yes", "No");
+						});
+						// The user confirmed
+						if (wantDeviceChanged) {
+							// Sign the user in
+							userObj = serverUser; // Replace local user with the user downloaded from the server
+							userAccess.CreateUser (serverUser);
+							// Set user.deviceToClear on the server
+						} // The user declines, do nothing
+					} else {
+						userObj = serverUser; // Replace local user with the user downloaded from the server
+						userAccess.CreateUser (serverUser);
+					}
 				} else {
 					//TODO: we may have to do something else later, in case that the datetime is not the same, but we overwite local, for now
 					if(!userObj.updateDateTimeObj.Equals(serverUser.updateDateTimeObj)){ // Update time is different, overwrite local user object

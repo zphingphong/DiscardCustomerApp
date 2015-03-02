@@ -69,6 +69,7 @@ namespace com.panik.discard {
 		public string ToJson(){
 			MemoryStream ms = new MemoryStream();
 			new DataContractJsonSerializer (typeof(UserObj)).WriteObject (ms, this);
+			ms.Position = 0;
 			return new StreamReader (ms).ReadToEnd ();
 		}
 

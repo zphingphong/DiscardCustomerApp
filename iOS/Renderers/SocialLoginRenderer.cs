@@ -30,10 +30,10 @@ namespace com.panik.discard.ios {
 					redirectUrl: App.instance.userManager.socialRedirectUrl // the redirect URL for the service
 				);
 
-				auth.Completed += (sender, eventArgs) => {
+				auth.Completed += async (sender, eventArgs) => {
 					// We presented the UI, so it's up to us to dimiss it on iOS.
 					DismissViewController (true, null);
-					App.instance.MainPage.Navigation.PopModalAsync();
+					await App.instance.MainPage.Navigation.PopModalAsync();
 
 					if (eventArgs.IsAuthenticated) {
 						App.instance.userManager.LoginUser(eventArgs.Account, eventArgs.Account.Properties ["access_token"]);

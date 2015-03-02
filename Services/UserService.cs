@@ -54,9 +54,11 @@ namespace com.panik.discard {
 			JsonValue resultObj = JsonValue.Parse (result);
 			UserObj resultUserObj = null;
 			if ((bool)resultObj ["success"]) {
-				MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes ((string)resultObj["user"]));
+				MemoryStream ms = new MemoryStream (Encoding.UTF8.GetBytes (((JsonObject)resultObj ["user"]).ToString()));
+				ms.Position = 0;
 				resultUserObj = (UserObj)userJsonSerializer.ReadObject (ms);
 				resultUserObj.id = (string)resultObj ["user"] ["_id"];
+			} else { // Fail to connect to the database | User with the same email address + different device ID existed
 			}
 			return resultUserObj;
 		}
