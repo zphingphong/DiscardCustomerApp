@@ -1,6 +1,5 @@
 ﻿using System;
 using Xamarin.Forms;
-using System.Threading.Tasks;
 
 namespace com.panik.discard {
 	public partial class LoginScreen : ContentPage {
