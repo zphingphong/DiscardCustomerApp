@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace com.panik.discard {
 	[DataContract]
@@ -20,10 +21,10 @@ namespace com.panik.discard {
 		public int category { get; set; }
 
 		[DataMember]
-		public string[] emails { get; set; }
+		public List<string> emails { get; set; }
 
 		[DataMember]
-		public string[] phones { get; set; }
+		public List<string> phones { get; set; }
 
 		[DataMember]
 		public AddressObj address { get; set; }

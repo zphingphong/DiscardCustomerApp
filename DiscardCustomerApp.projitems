@@ -27,6 +27,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Managers\StoreManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataObjects\StoreObj.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataObjects\AddressObj.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccesses\StoreAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\StoreService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Screens\" />

@@ -21,8 +21,9 @@ namespace com.panik.discard {
 			fileLocker = new object ();
 			// Show login page only if no local user exist
 			if (File.Exists (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "UserDoc"))) {
-				userObj = userManager.GetUpdatedUser ();
-				MainPage = new NavigationPage(new StoreListScreen ()); // TODO: Skip the login process, but still load data from the server if there's Internet
+				userObj = userManager.GetUpdatedUser (); // TODO: Skip the login process, but still load data from the server if there's Internet
+				storeManager.GetNewStoresLogo (userObj);
+				MainPage = new NavigationPage(new StoreListScreen ());
 			} else {
 				userObj = new UserObj ();
 				MainPage = new LoginScreen ();

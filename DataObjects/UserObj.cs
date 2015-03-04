@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
@@ -56,6 +57,10 @@ namespace com.panik.discard {
 				updateDateTime = value.ToString ("O", CultureInfo.InvariantCulture);
 			}
 		}
+
+		[DataMember]
+		public List<StoreObj> stores { get; set; }
+
 		// TODO: Implement these
 //		[DataMember]
 //		public string country { get; set; }
