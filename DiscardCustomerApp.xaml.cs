@@ -23,7 +23,7 @@ namespace com.panik.discard {
 			if (File.Exists (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "UserDoc"))) {
 				userObj = userManager.GetUpdatedUser (); // TODO: Skip the login process, but still load data from the server if there's Internet
 				storeManager.GetNewStoresLogo (userObj);
-				MainPage = new NavigationPage(new StoreListScreen ());
+				MainPage = new NavigationPage(new StoreListScreen (userObj.stores));
 			} else {
 				userObj = new UserObj ();
 				MainPage = new LoginScreen ();

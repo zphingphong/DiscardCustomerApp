@@ -26,7 +26,7 @@ namespace com.panik.discard {
 		}
 
 		public void GoToStoreListPage(){
-			Navigation.PushModalAsync (new NavigationPage(new StoreListScreen ()));
+			Navigation.PushModalAsync (new NavigationPage(new StoreListScreen (App.instance.userObj.stores)));
 		}
 	}
 }

@@ -8,43 +8,30 @@
 		<StackLayout>
 			<SearchBar
 				Placeholder="Search" />
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition
-							Height="*" />
-						<RowDefinition
-							Height="*" />
-						<RowDefinition
-							Height="*" />
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition
-							Width="*" />
-						<ColumnDefinition
-							Width="*" />
-					</Grid.ColumnDefinitions>
-					<Label
-						Text="Autosized cell"
-						Grid.Row="0"
-						Grid.Column="0"
-						BackgroundColor="Blue" />
-					<BoxView
-						Color="Silver"
-						HeightRequest="0"
-						Grid.Row="0"
-						Grid.Column="1" />
-					<BoxView
-						Color="Teal"
-						Grid.Row="1"
-						Grid.Column="0" />
-					<Label
-						Text="Leftover space"
-						Grid.Row="1"
-						Grid.Column="1"
-						BackgroundColor="Aqua"
-						XAlign="Center"
-						YAlign="Center" />
-				</Grid>
+			<ListView
+				x:Name="storeListView">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<ViewCell.View>
+								<StackLayout
+									Orientation="Horizontal">
+									<Image
+										Source="{Binding xsLogoDirectoryPath}" />
+									<StackLayout>
+										<Label
+											Text="{Binding name}">
+										</Label>
+										<Label
+											Text="{Binding address.street}, {Binding address.city}">
+										</Label>
+									</StackLayout>
+								</StackLayout>
+							</ViewCell.View>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
 		</StackLayout>
 	</ContentPage.Content>
 	<ContentPage.ToolbarItems>
