@@ -8,18 +8,23 @@ namespace com.panik.discard {
 
 		private static readonly App _instance = new App ();
 		public UserManager userManager;
+		public StoreManager storeManager;
 		public static object fileLocker;
 		public const string SERVER_ENDPOINT = "http://192.168.1.71:3000/";
+		public const string IMG_SERVER_ENDPOINT = "http://192.168.1.71:3000/";
+		public UserObj userObj;
 
 		private App () {
 			InitializeComponent ();
 			userManager =  new UserManager();
+			storeManager = new StoreManager ();
 			fileLocker = new object ();
 			// Show login page only if no local user exist
 			if (File.Exists (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "UserDoc"))) {
-				userManager.LoadExistingUser ();
+				userObj = userManager.GetUpdatedUser ();
 				MainPage = new NavigationPage(new StoreListScreen ()); // TODO: Skip the login process, but still load data from the server if there's Internet
 			} else {
+				userObj = new UserObj ();
 				MainPage = new LoginScreen ();
 			}
 		}

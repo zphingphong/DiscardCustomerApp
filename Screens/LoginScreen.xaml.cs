@@ -12,7 +12,7 @@ namespace com.panik.discard {
 			App.instance.userManager.socialScope = "email";
 			App.instance.userManager.socialAuthorizeUrl = new Uri ("https://m.facebook.com/dialog/oauth/");
 			App.instance.userManager.socialRedirectUrl = new Uri ("http://www.facebook.com/connect/login_success.html");
-			App.instance.userManager.userObj.loginTypeEnum = UserObj.loginTypes.facebook;
+			App.instance.userObj.loginTypeEnum = UserObj.loginTypes.facebook;
 			await Navigation.PushModalAsync (new SocialLoginScreen ());
 		}
 
@@ -21,8 +21,12 @@ namespace com.panik.discard {
 			App.instance.userManager.socialScope = "email";
 			App.instance.userManager.socialAuthorizeUrl = new Uri ("https://accounts.google.com/o/oauth2/auth");
 			App.instance.userManager.socialRedirectUrl = new Uri ("https://www.google.com/oauth2callback");
-			App.instance.userManager.userObj.loginTypeEnum = UserObj.loginTypes.google;
+			App.instance.userObj.loginTypeEnum = UserObj.loginTypes.google;
 			await Navigation.PushModalAsync (new SocialLoginScreen ());
+		}
+
+		public void GoToStoreListPage(){
+			Navigation.PushModalAsync (new NavigationPage(new StoreListScreen ()));
 		}
 	}
 }

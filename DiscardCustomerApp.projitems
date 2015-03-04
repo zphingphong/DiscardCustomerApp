@@ -24,6 +24,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Screens\StoreListScreen.xaml.cs">
       <DependentUpon>StoreListScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Managers\StoreManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataObjects\StoreObj.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataObjects\AddressObj.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Screens\" />

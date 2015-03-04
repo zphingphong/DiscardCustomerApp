@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Globalization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
@@ -74,6 +75,13 @@ namespace com.panik.discard {
 			new DataContractJsonSerializer (typeof(UserObj)).WriteObject (ms, this);
 			ms.Position = 0;
 			return new StreamReader (ms).ReadToEnd ();
+		}
+
+		public static UserObj ParseUserFromJson(string userJson){
+			DataContractJsonSerializer userJsonSerializer = new DataContractJsonSerializer (typeof(UserObj));
+			MemoryStream ms = new MemoryStream (Encoding.UTF8.GetBytes (userJson));
+			ms.Position = 0;
+			return (UserObj)userJsonSerializer.ReadObject (ms);
 		}
 
 //		public static UserObj instance {

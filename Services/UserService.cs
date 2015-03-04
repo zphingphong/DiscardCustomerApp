@@ -1,18 +1,13 @@
 ﻿using System;
-using System.IO;
-using System.Text;
 using System.Net;
 using System.Json;
-using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using Xamarin.Auth;
 
 namespace com.panik.discard {
 	public class UserService {
-		private DataContractJsonSerializer userJsonSerializer;
 
 		public UserService () {
-			userJsonSerializer = new DataContractJsonSerializer (typeof(UserObj));
 		}
 
 		public void GetUserInfoFromFacebook (UserObj userObj, Account account, Func<Task> cb) {
@@ -54,9 +49,7 @@ namespace com.panik.discard {
 			JsonValue resultObj = JsonValue.Parse (result);
 			UserObj resultUserObj = null;
 			if ((bool)resultObj ["success"]) {
-				MemoryStream ms = new MemoryStream (Encoding.UTF8.GetBytes (((JsonObject)resultObj ["user"]).ToString()));
-				ms.Position = 0;
-				resultUserObj = (UserObj)userJsonSerializer.ReadObject (ms);
+				resultUserObj = UserObj.ParseUserFromJson(((JsonObject)resultObj ["user"]).ToString());
 				resultUserObj.id = (string)resultObj ["user"] ["_id"];
 			} else { // Fail to connect to the database
 			}
@@ -75,6 +68,21 @@ namespace com.panik.discard {
 			} else {
 				return false;
 			}
+		}
+
+		public UserObj GetUserFromServer (string userId){
+			string result = "";
+			using (WebClient wc = new WebClient ()) {
+				result = wc.DownloadString (App.SERVER_ENDPOINT + "user/" + userId);
+			}
+			JsonValue resultObj = JsonValue.Parse (result);
+			UserObj resultUserObj = null;
+			if ((bool)resultObj ["success"]) {
+				resultUserObj = UserObj.ParseUserFromJson(((JsonObject)resultObj ["user"]).ToString());
+				resultUserObj.id = (string)resultObj ["user"] ["_id"];
+			} else { // Fail to connect to the database
+			}
+			return resultUserObj;
 		}
 	}
 }
