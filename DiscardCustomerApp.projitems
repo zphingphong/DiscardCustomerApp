@@ -29,6 +29,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataObjects\AddressObj.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccesses\StoreAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\StoreService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\StoreCardScreen.xaml.cs">
+      <DependentUpon>StoreCardScreen.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Screens\" />
@@ -45,6 +48,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Screens\StoreListScreen.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Screens\StoreCardScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

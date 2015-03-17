@@ -9,7 +9,9 @@
 			<SearchBar
 				Placeholder="Search" />
 			<ListView
-				x:Name="storeListView">
+				RowHeight="60"
+				x:Name="storeListView"
+				SeparatorVisibility="None">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
@@ -17,7 +19,7 @@
 								<StackLayout
 									Orientation="Horizontal">
 									<Image
-										Source="{Binding xsLogoDirectoryPath}" />
+										Source="{Binding uiXsLogoImagePath}" />
 									<StackLayout>
 										<Label
 											Text="{Binding name}">

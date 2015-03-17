@@ -10,6 +10,11 @@ namespace com.panik.discard.ios {
 		public string GetUniqueID () {
 			return UIDevice.CurrentDevice.IdentifierForVendor.AsString();
 		}
+
+		public bool IsDeviceOnline(){
+			NetworkStatus internetStatus = Reachability.InternetConnectionStatus ();
+			return internetStatus == NetworkStatus.NotReachable ? false : true;
+		}
 	}
 }
 

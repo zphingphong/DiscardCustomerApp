@@ -29,6 +29,8 @@ namespace com.panik.discard {
 		[DataMember]
 		public AddressObj address { get; set; }
 
+		public string uiXsLogoImagePath { get; set; }
+
 		// TODO: Implement these
 		//		[DataMember]
 		//		public LocationObj location { get; set; }

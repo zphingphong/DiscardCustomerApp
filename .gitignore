@@ -1,3 +1,12 @@
+*.pidb
+*.swp
+*.DS_Store
+*.nib
+*.pfx
+
+# NuGet Packages Directory
+packages/
+
 #Autosave files
 *~
 
