@@ -5,7 +5,7 @@
 	x:Class="com.panik.discard.StoreListScreen"
 	Title="Stores">
 	<ContentPage.Content>
-		<StackLayout>
+		<StackLayout Spacing="0">
 			<SearchBar
 				Placeholder="Search" />
 			<ListView
@@ -37,7 +37,7 @@
 		</StackLayout>
 	</ContentPage.Content>
 	<ContentPage.ToolbarItems>
-		<ToolbarItem
+		<ToolbarItem Clicked="goToAddStore"
 			Name="Add">
 		</ToolbarItem>
 	</ContentPage.ToolbarItems>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="com.panik.discard.AddStoreScreen"
+	Title="New Store">
+	<ContentPage.Content>
+		<StackLayout
+			Padding="10, 10, 10, 0">
+			<Entry
+				Placeholder="Store ID">
+			</Entry>
+			<StackLayout
+				Orientation="Horizontal">
+				<StackLayout
+					HorizontalOptions="FillAndExpand">
+					<Button
+						Clicked="findStore"
+						Style="{StaticResource ButtonStyle}"
+						Text="Find">
+					</Button>
+				</StackLayout>
+				<StackLayout
+					HorizontalOptions="FillAndExpand">
+					<Button
+						Clicked="addStore"
+						Style="{StaticResource ButtonStyle}"
+						Text="Add">
+					</Button>
+				</StackLayout>
+			</StackLayout>
+			<Label
+				Text="{Binding address.street}">
+			</Label>
+			<Label
+				Text="{Binding address.city}, {Binding address.province}, {Binding address.postalCode}">
+			</Label>
+			<Label
+				Text="{Binding phones[0]}">
+			</Label>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

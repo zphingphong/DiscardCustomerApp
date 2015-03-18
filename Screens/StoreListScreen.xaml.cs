@@ -15,8 +15,12 @@ namespace com.panik.discard {
 
 			storeListView.ItemSelected += async (sender, e) => {
 //				var todoItem = (TodoItem)e.SelectedItem;
-				await Navigation.PushAsync (new NavigationPage(new StoreCardScreen ()));
+				await Navigation.PushAsync (new StoreCardScreen ((StoreObj)e.SelectedItem));
 			};
+		}
+
+		public async void goToAddStore (object sender, EventArgs e) {
+			await Navigation.PushAsync (new AddStoreScreen ());
 		}
 	}
 }
