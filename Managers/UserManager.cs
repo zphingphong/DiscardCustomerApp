@@ -51,12 +51,14 @@ namespace com.panik.discard {
 								userAccess.CreateUser (App.instance.userObj);
 								// Set the new user with user.deviceToClear on the server
 								userService.ChangeDeviceAsync (App.instance.userObj.ToJson ());
+								App.instance.storeManager.GetNewStoresLogo (App.instance.userObj);
 								((LoginScreen)App.instance.MainPage).GoToStoreListPage ();
 							} // The user declines, do nothing
 						});
 					} else {
 						App.instance.userObj = serverUser; // Replace local user with the user downloaded from the server
 						userAccess.CreateUser (serverUser);
+						App.instance.storeManager.GetNewStoresLogo (App.instance.userObj);
 						Device.BeginInvokeOnMainThread (async() => {
 							((LoginScreen)App.instance.MainPage).GoToStoreListPage ();
 						});
@@ -66,6 +68,7 @@ namespace com.panik.discard {
 					if (!App.instance.userObj.updateDateTimeObj.Equals (serverUser.updateDateTimeObj)) { // Update time is different, overwrite local user object
 						App.instance.userObj = serverUser; // Replace local user with the user downloaded from the server
 						userAccess.CreateUser (serverUser);
+						App.instance.storeManager.GetNewStoresLogo (App.instance.userObj);
 					}
 					Device.BeginInvokeOnMainThread (async() => {
 						((LoginScreen)App.instance.MainPage).GoToStoreListPage ();
@@ -79,9 +82,14 @@ namespace com.panik.discard {
 			return userAccess.RetrieveUserAsObj ();
 		}
 
-		public UserObj GetUpdatedUser(){
+		public UserObj GetUpdatedUser () {
 			UserObj userObj = this.GetExistingUser ();
-			return userService.GetUserFromServer(userObj.id);
+			userObj = userService.GetUserFromServer (userObj.id);
+			return userObj;
+		}
+
+		public void UpdateLocalUser (UserObj userObj) {
+			userAccess.CreateUser (userObj);
 		}
 	}
 }

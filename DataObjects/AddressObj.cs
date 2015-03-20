@@ -1,22 +1,22 @@
-﻿using System.Runtime.Serialization;
+﻿//using System.Runtime.Serialization;
 
 namespace com.panik.discard {
-	[DataContract]
+//	[DataContract]
 	public class AddressObj {
 
-		[DataMember]
+//		[DataMember]
 		public string street { get; set; }
 
-		[DataMember]
+//		[DataMember]
 		public string city { get; set; }
 
-		[DataMember]
+//		[DataMember]
 		public string province { get; set; }
 
-		[DataMember]
+//		[DataMember]
 		public string country { get; set; }
 
-		[DataMember]
+//		[DataMember]
 		public string postalCode { get; set; }
 
 		public AddressObj () {

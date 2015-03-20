@@ -3,12 +3,11 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Globalization;
-using Newtonsoft.Json;
-//using System.Runtime.Serialization;
-//using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace com.panik.discard {
-//	[DataContract]
+	[DataContract]
 	public class UserObj {
 		public enum loginTypes {
 			facebook,
@@ -17,13 +16,13 @@ namespace com.panik.discard {
 
 //		private static readonly UserObj _instance = new UserObj ();
 
-//		[DataMember]
+		[DataMember]
 		public string id { get; set; }
 
-//		[DataMember]
+		[DataMember]
 		public string userKey { get; set; }
 
-//		[DataMember] // What service does the user use to login
+		[DataMember] // What service does the user use to login
 		public int loginType { get; set; }
 
 		public loginTypes loginTypeEnum { 
@@ -35,19 +34,19 @@ namespace com.panik.discard {
 			}
 		}
 
-//		[DataMember]
+		[DataMember]
 		public string name { get; set; }
 
-//		[DataMember]
+		[DataMember]
 		public string email { get; set; }
 
-//		[DataMember]
+		[DataMember]
 		public string deviceId { get; set; }
 
-//		[DataMember]
+		[DataMember]
 		public string deviceToClear { get; set; }
 
-//		[DataMember]
+		[DataMember]
 		public string updateDateTime { get; set; }
 		// This field is for check syncing time to override fields
 		public DateTime updateDateTimeObj {
@@ -59,7 +58,7 @@ namespace com.panik.discard {
 			}
 		}
 
-//		[DataMember]
+		[DataMember]
 		public List<StoreObj> stores { get; set; }
 
 		// TODO: Implement these
@@ -77,11 +76,17 @@ namespace com.panik.discard {
 		}
 
 		public string ToJson(){
-			return JsonConvert.SerializeObject (this);
+			MemoryStream ms = new MemoryStream();
+			new DataContractJsonSerializer (typeof(UserObj)).WriteObject (ms, this);
+			ms.Position = 0;
+			return new StreamReader (ms).ReadToEnd ();
 		}
 
 		public static UserObj ParseUserFromJson(string userJson){
-			return JsonConvert.DeserializeObject<UserObj>(userJson);
+			DataContractJsonSerializer userJsonSerializer = new DataContractJsonSerializer (typeof(UserObj));
+			MemoryStream ms = new MemoryStream (Encoding.UTF8.GetBytes (userJson));
+			ms.Position = 0;
+			return (UserObj)userJsonSerializer.ReadObject (ms);
 		}
 
 //		public static UserObj instance {

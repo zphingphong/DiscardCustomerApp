@@ -10,13 +10,20 @@ namespace com.panik.discard {
 			this.BindingContext = store;
 
 			// Generate stamps grid
-			int noOfRows = (int)Math.Ceiling ((double)(9 / 4));
+			int noOfRows = (int)Math.Ceiling (((double)9 / 4));
+			int stampCount = 0;
+			string stampText;
 			for (int row = 0; row < noOfRows; row++) {
-				for (int col = 0; col < 4; col++) {
+				for (int col = 0; col < 4 && stampCount < 9; col++, stampCount++) {
+					if (stampCount < 6) {
+						stampText = "STAMP";
+					} else {
+						stampText = "-----";
+					}
 					stampCardGrid.Children.Add (new Label {
-						Text = "Grid",
+						Text = stampText,
 						HorizontalOptions = LayoutOptions.Center
-					}, row, col);
+					}, col, row);
 				}
 			}
 		}

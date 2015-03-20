@@ -1,32 +1,33 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using System;
+using System.Collections.Generic;
+//using System.Runtime.Serialization;
 
 namespace com.panik.discard {
-	[DataContract]
+//	[DataContract]
 	public class StoreObj {
 
-		[DataMember]
+//		[DataMember]
 		public string _id { get; set; }
 
-		[DataMember]
+//		[DataMember]
 		public int storeId { get; set; }
 
-		[DataMember]
+//		[DataMember]
 		public string name { get; set; }
 
-		[DataMember]
+//		[DataMember]
 		public string website { get; set; }
 
-		[DataMember]
+//		[DataMember]
 		public int category { get; set; }
 
-		[DataMember]
+//		[DataMember]
 		public List<string> emails { get; set; }
 
-		[DataMember]
+//		[DataMember]
 		public List<string> phones { get; set; }
 
-		[DataMember]
+//		[DataMember]
 		public AddressObj address { get; set; }
 
 		public string uiXsLogoImagePath { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 using Xamarin.Forms;
 
@@ -10,9 +11,10 @@ namespace com.panik.discard {
 		public UserManager userManager;
 		public StoreManager storeManager;
 		public static object fileLocker;
-		public const string SERVER_ENDPOINT = "http://192.168.1.71:3000/";
-		public const string IMG_SERVER_ENDPOINT = "http://192.168.1.71:3000/";
+		public const string SERVER_ENDPOINT = "http://192.168.1.35:3000/";
+		public const string IMG_SERVER_ENDPOINT = "http://192.168.1.35:3000/";
 		public UserObj userObj;
+		private bool localUserNeedUpdate = false;
 
 		private App () {
 			InitializeComponent ();
@@ -21,15 +23,17 @@ namespace com.panik.discard {
 			fileLocker = new object ();
 			// Show login page only if no local user exist
 			if (File.Exists (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "UserDoc"))) {
-//				if (DependencyService.Get<IDeviceManager> ().IsDeviceOnline ()) {
-//					userObj = userManager.GetUpdatedUser ();
-//					storeManager.GetNewStoresLogo (userObj);
-//				} else {
+				if (DependencyService.Get<IDeviceManager> ().IsDeviceOnline ()) {
+					userObj = userManager.GetUpdatedUser ();
+					localUserNeedUpdate = true;
+					storeManager.GetNewStoresLogo (userObj);
+				} else {
 					userObj = userManager.GetExistingUser ();
-//				}
+				}
 				MainPage = new NavigationPage(new StoreListScreen (userObj.stores, storeManager));
 			} else {
 				userObj = new UserObj ();
+				userObj.stores = new List<StoreObj> ();
 				MainPage = new LoginScreen ();
 			}
 		}
@@ -41,7 +45,12 @@ namespace com.panik.discard {
 		}
 
 		protected override void OnStart () {
-			// Handle when your app starts
+//			userObj = userManager.GetExistingUser ();
+//			MainPage = new NavigationPage(new StoreListScreen (userObj.stores, storeManager));
+			// TODO: Have to update local user data, but cannot write file on app initialize. May need to check more condition.
+			if (localUserNeedUpdate) {
+				userManager.UpdateLocalUser (userObj);
+			}
 		}
 
 		protected override void OnSleep () {

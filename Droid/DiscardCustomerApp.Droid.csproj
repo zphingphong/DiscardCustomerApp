@@ -62,12 +62,16 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Json" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Managers\DeviceManager.cs" />
+    <Compile Include="UserObj.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -91,6 +95,10 @@
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.auth">
       <Version>1.2.3.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="json.net">
+      <Version>6.0.8.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

@@ -7,7 +7,7 @@
 	<ContentPage.Content>
 		<StackLayout Spacing="0">
 			<SearchBar
-				Placeholder="Search" />
+				Placeholder="Search by store name" />
 			<ListView
 				RowHeight="60"
 				x:Name="storeListView"
@@ -38,7 +38,7 @@
 	</ContentPage.Content>
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Clicked="goToAddStore"
-			Name="Add">
+			Name="+">
 		</ToolbarItem>
 	</ContentPage.ToolbarItems>
 </ContentPage>
