@@ -6,9 +6,11 @@
 	Title="New Store">
 	<ContentPage.Content>
 		<StackLayout
-			Padding="10, 10, 10, 0">
+			Padding="10, 10, 10, 0" x:Name="addScreenContainer">
 			<Entry
-				Placeholder="Store ID">
+				Placeholder="Store ID"
+				Text="{Binding storeId, Mode=OneWayToSource}"
+				Keyboard="Numeric">
 			</Entry>
 			<StackLayout
 				Orientation="Horizontal">
@@ -25,18 +27,21 @@
 					<Button
 						Clicked="addStore"
 						Style="{StaticResource ButtonStyle}"
-						Text="Add">
+						Text="Add" IsEnabled="false"
+						x:Name="addBtn">
 					</Button>
 				</StackLayout>
 			</StackLayout>
+			<Image
+				Source="{Binding uiXsLogoImagePath}" />
 			<Label
-				Text="{Binding address.street}">
+				Text="{Binding address.street}" XAlign="Center">
 			</Label>
 			<Label
-				Text="{Binding address.city}, {Binding address.province}, {Binding address.postalCode}">
+				Text="{Binding address.city}, {Binding address.province}, {Binding address.postalCode}" XAlign="Center">
 			</Label>
 			<Label
-				Text="{Binding phones[0]}">
+				Text="{Binding phones[0]}" XAlign="Center">
 			</Label>
 		</StackLayout>
 	</ContentPage.Content>

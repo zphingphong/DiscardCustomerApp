@@ -80,7 +80,7 @@ namespace com.panik.discard {
 			return JsonConvert.SerializeObject (this);
 		}
 
-		public static UserObj ParseUserFromJson(string userJson){
+		public static UserObj ParseFromJson(string userJson){
 			return JsonConvert.DeserializeObject<UserObj>(userJson);
 		}
 

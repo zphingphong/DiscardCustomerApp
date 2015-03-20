@@ -17,6 +17,10 @@ namespace com.panik.discard {
 				storeService.GetStoreXsLogo (storeObj, xsLogoDirectoryPath);
 			}
 		}
+
+		public StoreObj FindNewStore (int storeId) {
+			return storeService.GetStoreFromServer (storeId);
+		}
 	}
 }
 

@@ -49,7 +49,7 @@ namespace com.panik.discard {
 			JsonValue resultObj = JsonValue.Parse (result);
 			UserObj resultUserObj = null;
 			if ((bool)resultObj ["success"]) {
-				resultUserObj = UserObj.ParseUserFromJson(((JsonObject)resultObj ["user"]).ToString());
+				resultUserObj = UserObj.ParseFromJson(((JsonObject)resultObj ["user"]).ToString());
 				resultUserObj.id = (string)resultObj ["user"] ["_id"];
 			} else { // Fail to connect to the database
 			}
@@ -78,7 +78,7 @@ namespace com.panik.discard {
 			JsonValue resultObj = JsonValue.Parse (result);
 			UserObj resultUserObj = null;
 			if ((bool)resultObj ["success"]) {
-				resultUserObj = UserObj.ParseUserFromJson(((JsonObject)resultObj ["user"]).ToString());
+				resultUserObj = UserObj.ParseFromJson(((JsonObject)resultObj ["user"]).ToString());
 				resultUserObj.id = (string)resultObj ["user"] ["_id"];
 			} else { // Fail to connect to the database
 			}

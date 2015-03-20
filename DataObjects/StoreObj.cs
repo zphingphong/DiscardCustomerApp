@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 //using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace com.panik.discard {
 //	[DataContract]
-	public class StoreObj {
+	public class StoreObj /*: INotifyPropertyChanged*/ {
+
+//		public event PropertyChangedEventHandler PropertyChanged;
 
 //		[DataMember]
 		public string _id { get; set; }
@@ -37,6 +41,14 @@ namespace com.panik.discard {
 		//		public LocationObj location { get; set; }
 
 		public StoreObj () {
+		}
+
+		public string ToJson(){
+			return JsonConvert.SerializeObject (this);
+		}
+
+		public static StoreObj ParseFromJson(string storeJson){
+			return JsonConvert.DeserializeObject<StoreObj>(storeJson);
 		}
 	}
 }
