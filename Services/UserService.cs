@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Json;
 using System.Threading.Tasks;
@@ -8,6 +9,14 @@ namespace com.panik.discard {
 	public class UserService {
 
 		public UserService () {
+		}
+
+		public void GetUserQr(UserObj userObj, string path){
+			if (!File.Exists (Path.Combine (path, userObj.id + ".png"))) {
+				using (WebClient wc = new WebClient ()) {
+					wc.DownloadFile (App.IMG_SERVER_ENDPOINT + "images/user_qr/" + userObj.id + ".png", Path.Combine (path, userObj.id + ".png"));
+				}
+			}
 		}
 
 		public void GetUserInfoFromFacebook (UserObj userObj, Account account, Func<Task> cb) {

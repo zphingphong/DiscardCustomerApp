@@ -17,6 +17,10 @@ namespace com.panik.discard {
 //				var todoItem = (TodoItem)e.SelectedItem;
 				await Navigation.PushAsync (new StoreCardScreen ((StoreObj)e.SelectedItem));
 			};
+
+			MessagingCenter.Subscribe<AddStoreScreen, StoreObj> (this, "NewStoreAdded", (sender, newStore) => {
+				stores.Add(newStore);
+			});
 		}
 
 		public async void goToAddStore (object sender, EventArgs e) {

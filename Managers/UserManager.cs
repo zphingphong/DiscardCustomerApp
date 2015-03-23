@@ -48,6 +48,7 @@ namespace com.panik.discard {
 								serverUser.deviceToClear = serverUser.deviceId; // Set deviceToClear to the existing device ID
 								serverUser.deviceId = App.instance.userObj.deviceId; // Set the device ID to the new device ID
 								App.instance.userObj = serverUser; // Replace local user with the user downloaded from the server with the new ID
+								userService.GetUserQr(serverUser, userAccess.GetQrImageDirectoryPath());
 								userAccess.CreateUser (App.instance.userObj);
 								// Set the new user with user.deviceToClear on the server
 								userService.ChangeDeviceAsync (App.instance.userObj.ToJson ());
@@ -57,6 +58,7 @@ namespace com.panik.discard {
 						});
 					} else {
 						App.instance.userObj = serverUser; // Replace local user with the user downloaded from the server
+						userService.GetUserQr(serverUser, userAccess.GetQrImageDirectoryPath());
 						userAccess.CreateUser (serverUser);
 						App.instance.storeManager.GetNewStoresLogo (App.instance.userObj);
 						Device.BeginInvokeOnMainThread (async() => {

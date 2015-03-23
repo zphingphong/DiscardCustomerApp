@@ -5,10 +5,12 @@ using Newtonsoft.Json;
 namespace com.panik.discard {
 	public class UserAccess {
 		private string userFilePath;
+		private readonly string qrImageDirectoryPath = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "images/user_qr/");
 //		private DataContractJsonSerializer userJsonSerializer;
 
 		public UserAccess () {
 			userFilePath = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "UserDoc");
+			(new FileInfo (qrImageDirectoryPath)).Directory.Create ();
 //			DataContractJsonSerializerSettings userSerSettings = new DataContractJsonSerializerSettings();
 //			userSerSettings.EmitTypeInformation = EmitTypeInformation.Never;
 //			userJsonSerializer = new DataContractJsonSerializer (typeof(UserObj));
@@ -36,6 +38,10 @@ namespace com.panik.discard {
 		}
 
 		public void UpdateUser (UserObj userObj){
+		}
+
+		public string GetQrImageDirectoryPath(){
+			return qrImageDirectoryPath;
 		}
 	}
 }

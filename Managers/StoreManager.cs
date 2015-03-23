@@ -22,8 +22,10 @@ namespace com.panik.discard {
 			return storeService.GetStoreFromServer (storeId);
 		}
 
-		public bool AddNewStore (int storeId) {
-			return storeService.AddCustomerStore (storeId, App.instance.userObj.id);
+		public bool AddNewStore (StoreObj storeObj) {
+			storeService.AddCustomerStore (storeObj._id, App.instance.userObj.id);
+			storeService.GetStoreXsLogo (storeObj, xsLogoDirectoryPath);
+			return true; // TODO: add user error handler
 		}
 	}
 }
