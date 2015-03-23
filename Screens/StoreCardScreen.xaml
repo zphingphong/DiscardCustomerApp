@@ -6,16 +6,26 @@
 	Title="Store Name">
 	<ContentPage.Content>
 		<StackLayout
-			Spacing="0">
-			<Label
-				Text="{Binding address.street}">
-			</Label>
-			<Label
-				Text="{Binding address.city}, {Binding address.province}, {Binding address.postalCode}">
-			</Label>
-			<Label
-				Text="{Binding phones[0]}">
-			</Label>
+			Padding="0, 10, 0, 0">
+			<StackLayout x:Name="userInfoContainer">
+				<Image
+					Source="{Binding qrImageDirectoryPath}" />
+			</StackLayout>
+			<StackLayout
+				x:Name="storeInfoContainer">
+				<Label
+					Text="{Binding address.street}"
+					XAlign="Center">
+				</Label>
+				<Label
+					Text="{Binding address.city}, {Binding address.province}, {Binding address.postalCode}"
+					XAlign="Center">
+				</Label>
+				<Label
+					Text="{Binding phones[0]}"
+					XAlign="Center">
+				</Label>
+			</StackLayout>
 			<Grid
 				x:Name="stampCardGrid">
 				<Grid.RowDefinitions>

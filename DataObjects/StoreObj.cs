@@ -34,6 +34,7 @@ namespace com.panik.discard {
 //		[DataMember]
 		public AddressObj address { get; set; }
 
+		[JsonIgnore]
 		public string uiXsLogoImagePath { get; set; }
 
 		// TODO: Implement these

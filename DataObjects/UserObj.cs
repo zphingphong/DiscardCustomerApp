@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Text;
 using System.Collections.Generic;
 using System.Globalization;
 using Newtonsoft.Json;
@@ -49,7 +47,9 @@ namespace com.panik.discard {
 
 //		[DataMember]
 		public string updateDateTime { get; set; }
+
 		// This field is for check syncing time to override fields
+		[JsonIgnore]
 		public DateTime updateDateTimeObj {
 			get {
 				return DateTime.ParseExact (updateDateTime, "O", CultureInfo.InvariantCulture);
@@ -58,6 +58,9 @@ namespace com.panik.discard {
 				updateDateTime = value.ToString ("O", CultureInfo.InvariantCulture);
 			}
 		}
+
+		[JsonIgnore]
+		public string qrImageDirectoryPath { get; set; }
 
 //		[DataMember]
 		public List<StoreObj> stores { get; set; }

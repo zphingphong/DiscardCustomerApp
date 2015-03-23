@@ -7,7 +7,9 @@ namespace com.panik.discard {
 	public partial class StoreCardScreen : ContentPage {
 		public StoreCardScreen (StoreObj store) {
 			InitializeComponent ();
-			this.BindingContext = store;
+			storeInfoContainer.BindingContext = store;
+			App.instance.userManager.BuildQrImageDirectoryPath ();
+			userInfoContainer.BindingContext = App.instance.userObj;
 
 			// Generate stamps grid
 			int noOfRows = (int)Math.Ceiling (((double)9 / 4));

@@ -93,6 +93,10 @@ namespace com.panik.discard {
 		public void UpdateLocalUser (UserObj userObj) {
 			userAccess.CreateUser (userObj);
 		}
+
+		public void BuildQrImageDirectoryPath(){
+			App.instance.userObj.qrImageDirectoryPath = userAccess.GetQrImageDirectoryPath() + App.instance.userObj.id;
+		}
 	}
 }
 
