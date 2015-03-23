@@ -31,6 +31,15 @@ namespace com.panik.discard {
 			}
 			return resultStoreObj;
 		}
+
+		public bool AddCustomerStore(int storeId, string userId){
+			string result = "";
+			using (WebClient wc = new WebClient ()) {
+				result = wc.DownloadString (App.SERVER_ENDPOINT + "store/" + storeId + "/" + userId);
+			}
+			JsonValue resultObj = JsonValue.Parse (result);
+			return (bool)resultObj ["success"];
+		}
 	}
 }
 
