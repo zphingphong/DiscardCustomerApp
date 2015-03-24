@@ -13,13 +13,17 @@ namespace com.panik.discard {
 			storeListView.ItemsSource = stores;
 			this.BindingContext = storeManager;
 
-			storeListView.ItemSelected += async (sender, e) => {
-//				var todoItem = (TodoItem)e.SelectedItem;
-				await Navigation.PushAsync (new StoreCardScreen ((StoreObj)e.SelectedItem));
+			storeListView.ItemTapped += async (sender, e) => {
+				StoreCardScreen storeCardScreen = new StoreCardScreen ((StoreObj)storeListView.SelectedItem);
+				await Navigation.PushAsync (storeCardScreen);
 			};
 
 			MessagingCenter.Subscribe<AddStoreScreen, StoreObj> (this, "NewStoreAdded", (sender, newStore) => {
 				stores.Add(newStore);
+			});
+
+			MessagingCenter.Subscribe<StoreCardScreen> (this, "FinishStoreCard", (sender) => {
+				storeListView.SelectedItem = null;
 			});
 		}
 

@@ -2,11 +2,10 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="com.panik.discard.StoreCardScreen"
-	Title="Store Name">
+	x:Class="com.panik.discard.StoreCardScreen">
 	<ContentPage.Content>
 		<StackLayout
-			Padding="0, 10, 0, 0">
+			Padding="0, 5, 0, 0">
 			<StackLayout x:Name="userInfoContainer">
 				<Image
 					Source="{Binding qrImageDirectoryPath}" />

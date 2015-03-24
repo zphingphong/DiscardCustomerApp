@@ -8,6 +8,7 @@ namespace com.panik.discard {
 		public StoreCardScreen (StoreObj store) {
 			InitializeComponent ();
 			storeInfoContainer.BindingContext = store;
+			this.Title = store.name;
 			App.instance.userManager.BuildQrImageDirectoryPath ();
 			userInfoContainer.BindingContext = App.instance.userObj;
 
@@ -28,6 +29,12 @@ namespace com.panik.discard {
 					}, col, row);
 				}
 			}
+		}
+
+		protected override void OnDisappearing () {
+			base.OnDisappearing();
+			this.Title = "";
+			MessagingCenter.Send<StoreCardScreen> (this, "FinishStoreCard");
 		}
 	}
 }
