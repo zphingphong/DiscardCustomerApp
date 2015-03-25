@@ -28,7 +28,11 @@ namespace com.panik.discard {
 		}
 
 		public async void goToAddStore (object sender, EventArgs e) {
-			await Navigation.PushAsync (new AddStoreScreen ());
+			if (DependencyService.Get<IDeviceManager> ().IsDeviceOnline ()) {
+				await Navigation.PushAsync (new AddStoreScreen ());
+			} else {
+				await DisplayAlert ("No Internet", "Please connect to the Internet to add new store.", "OK");
+			}
 		}
 	}
 }
