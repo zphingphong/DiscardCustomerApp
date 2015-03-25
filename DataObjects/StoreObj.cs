@@ -1,38 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+
 //using System.Runtime.Serialization;
 using System.ComponentModel;
 
 namespace com.panik.discard {
-//	[DataContract]
-	public class StoreObj /*: INotifyPropertyChanged*/ {
+	//	[DataContract]
+	public class StoreObj { /*: INotifyPropertyChanged*/
 
-//		public event PropertyChangedEventHandler PropertyChanged;
+		//		public event PropertyChangedEventHandler PropertyChanged;
 
-//		[DataMember]
+		//		[DataMember]
 		public string _id { get; set; }
 
-//		[DataMember]
+		//		[DataMember]
 		public int storeId { get; set; }
 
-//		[DataMember]
+		//		[DataMember]
 		public string name { get; set; }
 
-//		[DataMember]
+		//		[DataMember]
 		public string website { get; set; }
 
-//		[DataMember]
+		//		[DataMember]
 		public int category { get; set; }
 
-//		[DataMember]
+		//		[DataMember]
 		public List<string> emails { get; set; }
 
-//		[DataMember]
+		//		[DataMember]
 		public List<string> phones { get; set; }
 
-//		[DataMember]
+		//		[DataMember]
 		public AddressObj address { get; set; }
+
+		public string themeColor { get; set; }
 
 		[JsonIgnore]
 		public string uiXsLogoImagePath { get; set; }
@@ -44,12 +47,12 @@ namespace com.panik.discard {
 		public StoreObj () {
 		}
 
-		public string ToJson(){
+		public string ToJson () {
 			return JsonConvert.SerializeObject (this);
 		}
 
-		public static StoreObj ParseFromJson(string storeJson){
-			return JsonConvert.DeserializeObject<StoreObj>(storeJson);
+		public static StoreObj ParseFromJson (string storeJson) {
+			return JsonConvert.DeserializeObject<StoreObj> (storeJson);
 		}
 	}
 }

@@ -5,16 +5,22 @@ namespace com.panik.discard {
 		private StoreAccess storeAccess;
 		private StoreService storeService;
 		public string xsLogoDirectoryPath { get; set; }
+		public string bgImgDirectoryPath { get; set; }
+		public string stampImgDirectoryPath { get; set; }
 
 		public StoreManager () {
 			storeService = new StoreService ();
 			storeAccess = new StoreAccess ();
 			xsLogoDirectoryPath = storeAccess.GetXsLogoDirectoryPath ();
+			bgImgDirectoryPath = storeAccess.GetBgImgDirectoryPath ();
+			stampImgDirectoryPath = storeAccess.GetStampImgDirectoryPath ();
 		}
 
-		public void GetNewStoresLogo (UserObj userObj) {
+		public void GetNewStoresAssets (UserObj userObj) {
 			foreach (StoreObj storeObj in userObj.stores) {
 				storeService.GetStoreXsLogo (storeObj, xsLogoDirectoryPath);
+				storeService.GetStoreBgImg (storeObj, bgImgDirectoryPath);
+				storeService.GetStoreStampImg (storeObj, stampImgDirectoryPath);
 			}
 		}
 
@@ -24,7 +30,11 @@ namespace com.panik.discard {
 
 		public bool AddNewStore (StoreObj storeObj) {
 			storeService.AddCustomerStore (storeObj._id, App.instance.userObj.id);
+			App.instance.userObj.stores.Add (storeObj);
+			App.instance.userManager.UpdateLocalUser (App.instance.userObj);
 			storeService.GetStoreXsLogo (storeObj, xsLogoDirectoryPath);
+			storeService.GetStoreBgImg (storeObj, bgImgDirectoryPath);
+			storeService.GetStoreStampImg (storeObj, stampImgDirectoryPath);
 			return true; // TODO: add user error handler
 		}
 	}

@@ -34,6 +34,13 @@
 					Property="TextColor"
 					Value="#FF9500" />
 			</Style>
+			<Style
+				x:Key="WhiteLabelStyle"
+				TargetType="Label">
+				<Setter
+					Property="TextColor"
+					Value="#FFFFFF" />
+			</Style>
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

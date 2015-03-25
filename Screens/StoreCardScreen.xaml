@@ -4,46 +4,54 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="com.panik.discard.StoreCardScreen">
 	<ContentPage.Content>
-		<StackLayout
-			Padding="0, 5, 0, 0">
-			<StackLayout x:Name="userInfoContainer">
-				<Image
-					Source="{Binding qrImageDirectoryPath}" />
-			</StackLayout>
-			<StackLayout
-				x:Name="storeInfoContainer">
-				<Label
-					Text="{Binding address.street}"
-					XAlign="Center">
-				</Label>
-				<Label
-					Text="{Binding address.city}, {Binding address.province}, {Binding address.postalCode}"
-					XAlign="Center">
-				</Label>
-				<Label
-					Text="{Binding phones[0]}"
-					XAlign="Center">
-				</Label>
-			</StackLayout>
-			<Grid
-				x:Name="stampCardGrid">
-				<Grid.RowDefinitions>
-					<RowDefinition
-						Height="Auto" />
-					<RowDefinition
-						Height="*" />
-					<RowDefinition
-						Height="100" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition
-						Width="Auto" />
-					<ColumnDefinition
-						Width="*" />
-					<ColumnDefinition
-						Width="100" />
-				</Grid.ColumnDefinitions>
-			</Grid>
-		</StackLayout>
+		<RelativeLayout
+			BackgroundColor="Black">
+<!--			<Image
+				x:Name="storeBgImageContainer"
+				RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+				RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" />-->
+			<RelativeLayout
+				RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+				BackgroundColor="#88000000">
+				<StackLayout
+					Padding="0, 5, 0, 0">
+					<StackLayout
+						x:Name="userInfoContainer">
+						<Image
+							Source="{Binding qrImageDirectoryPath}" />
+					</StackLayout>
+					<StackLayout
+						x:Name="storeInfoContainer">
+						<Label
+							Style="{StaticResource WhiteLabelStyle}"
+							Text="{Binding address.street}"
+							XAlign="Center">
+						</Label>
+						<Label
+							Style="{StaticResource WhiteLabelStyle}"
+							Text="{Binding address.city}, {Binding address.province}, {Binding address.postalCode}"
+							XAlign="Center">
+						</Label>
+						<Label
+							Style="{StaticResource WhiteLabelStyle}"
+							Text="{Binding phones[0]}"
+							XAlign="Center">
+						</Label>
+					</StackLayout>
+					<Grid
+						x:Name="stampCardGrid"
+						Padding="10, 0, 10, 10">
+						<Grid.RowDefinitions>
+							<RowDefinition
+								Height="Auto" />
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition
+								Width="*" />
+						</Grid.ColumnDefinitions>
+					</Grid>
+				</StackLayout>
+			</RelativeLayout>
+		</RelativeLayout>
 	</ContentPage.Content>
 </ContentPage>

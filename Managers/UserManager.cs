@@ -52,7 +52,7 @@ namespace com.panik.discard {
 								userAccess.CreateUser (App.instance.userObj);
 								// Set the new user with user.deviceToClear on the server
 								userService.ChangeDeviceAsync (App.instance.userObj.ToJson ());
-								App.instance.storeManager.GetNewStoresLogo (App.instance.userObj);
+								App.instance.storeManager.GetNewStoresAssets (App.instance.userObj);
 								((LoginScreen)App.instance.MainPage).GoToStoreListPage ();
 							} // The user declines, do nothing
 						});
@@ -60,7 +60,7 @@ namespace com.panik.discard {
 						App.instance.userObj = serverUser; // Replace local user with the user downloaded from the server
 						userService.GetUserQr(serverUser, userAccess.GetQrImageDirectoryPath());
 						userAccess.CreateUser (serverUser);
-						App.instance.storeManager.GetNewStoresLogo (App.instance.userObj);
+						App.instance.storeManager.GetNewStoresAssets (App.instance.userObj);
 						Device.BeginInvokeOnMainThread (async() => {
 							((LoginScreen)App.instance.MainPage).GoToStoreListPage ();
 						});
@@ -70,7 +70,7 @@ namespace com.panik.discard {
 					if (!App.instance.userObj.updateDateTimeObj.Equals (serverUser.updateDateTimeObj)) { // Update time is different, overwrite local user object
 						App.instance.userObj = serverUser; // Replace local user with the user downloaded from the server
 						userAccess.CreateUser (serverUser);
-						App.instance.storeManager.GetNewStoresLogo (App.instance.userObj);
+						App.instance.storeManager.GetNewStoresAssets (App.instance.userObj);
 					}
 					Device.BeginInvokeOnMainThread (async() => {
 						((LoginScreen)App.instance.MainPage).GoToStoreListPage ();

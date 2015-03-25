@@ -19,7 +19,7 @@ namespace com.panik.discard {
 
 		public async void addStore (object sender, EventArgs e) {
 			App.instance.storeManager.AddNewStore (storeObj);
-			MessagingCenter.Send<AddStoreScreen, StoreObj> (this, "NewStoreAdded", storeObj);
+//			MessagingCenter.Send<AddStoreScreen, StoreObj> (this, "NewStoreAdded", storeObj);
 			await Navigation.PopAsync ();
 		}
 

@@ -16,6 +16,22 @@ namespace com.panik.discard {
 			}
 		}
 
+		public void GetStoreBgImg(StoreObj storeObj, string path){
+			if (!File.Exists (Path.Combine (path, storeObj._id + ".png"))) {
+				using (WebClient wc = new WebClient ()) {
+					wc.DownloadFile (App.IMG_SERVER_ENDPOINT + "images/store_logo/lblur/" + storeObj._id + ".png", Path.Combine (path, storeObj._id + ".png"));
+				}
+			}
+		}
+
+		public void GetStoreStampImg(StoreObj storeObj, string path){
+			if (!File.Exists (Path.Combine (path, storeObj._id + ".png"))) {
+				using (WebClient wc = new WebClient ()) {
+					wc.DownloadFile (App.IMG_SERVER_ENDPOINT + "images/store_stamp/" + storeObj._id + ".png", Path.Combine (path, storeObj._id + ".png"));
+				}
+			}
+		}
+
 		public StoreObj GetStoreFromServer(int storeId){
 			string result = "";
 			using (WebClient wc = new WebClient ()) {

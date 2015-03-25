@@ -26,7 +26,7 @@ namespace com.panik.discard {
 				if (DependencyService.Get<IDeviceManager> ().IsDeviceOnline ()) {
 					userObj = userManager.GetUpdatedUser ();
 					localUserNeedUpdate = true;
-					storeManager.GetNewStoresLogo (userObj);
+					storeManager.GetNewStoresAssets (userObj);
 				} else {
 					userObj = userManager.GetExistingUser ();
 				}
