@@ -9,7 +9,8 @@ namespace com.panik.discard {
 			InitializeComponent ();
 			storeInfoContainer.BindingContext = store;
 			this.Title = store.name;
-//			storeBgImageContainer.Source = "facebook.png";
+			this.BackgroundColor = Color.FromHex ("#" + store.themeColor);
+			storeBgImageContainer.Source = App.instance.storeManager.bgImgDirectoryPath + store._id + ".png";
 			App.instance.userManager.BuildQrImageDirectoryPath ();
 			userInfoContainer.BindingContext = App.instance.userObj;
 
@@ -20,7 +21,7 @@ namespace com.panik.discard {
 			for (int row = 0; row < noOfRows; row++) {
 				for (int col = 0; col < 4 && stampCount < 9; col++, stampCount++) {
 					if (stampCount < 6) {
-						stampIconPath = "google.png";
+						stampIconPath = App.instance.storeManager.stampImgDirectoryPath + store._id + ".png";
 					} else {
 						stampIconPath = "";
 					}

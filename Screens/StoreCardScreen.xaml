@@ -4,12 +4,11 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="com.panik.discard.StoreCardScreen">
 	<ContentPage.Content>
-		<RelativeLayout
-			BackgroundColor="Black">
-<!--			<Image
+		<RelativeLayout x:Name="storeBgContainer">
+			<Image
 				x:Name="storeBgImageContainer"
 				RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
-				RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" />-->
+				RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" />
 			<RelativeLayout
 				RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
 				BackgroundColor="#88000000">
