@@ -23,7 +23,7 @@ namespace com.panik.discard {
 			App.instance.userObj.updateDateTimeObj = DateTime.Now;
 			App.instance.userObj.deviceId = DependencyService.Get<IDeviceManager> ().GetUniqueID ();
 			// Make another call to get more user information
-			switch (App.instance.userObj.loginTypeEnum) {
+			switch (App.instance.userObj.loginType) {
 				case UserObj.loginTypes.facebook:
 					userService.GetUserInfoFromFacebook (App.instance.userObj, account, LoginServerUser);
 					break;

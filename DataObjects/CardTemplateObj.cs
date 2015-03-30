@@ -10,7 +10,8 @@ namespace com.panik.discard {
 		};
 
 		public string _id { get; set; }
-		public StoreObj store { get; set; }
+		[JsonProperty("store")]
+		public string storeId { get; set; }
 		public cardTypes type { get; set; }
 		public string perks { get; set; }
 		public int stampsToRedeem { get; set; }

@@ -65,7 +65,7 @@ namespace com.panik.discard {
 //		[DataMember]
 		public List<StoreObj> stores { get; set; }
 
-		public List<StoreObj> cards { get; set; }
+		public List<CardObj> cards { get; set; }
 
 		// TODO: Implement these
 //		[DataMember]

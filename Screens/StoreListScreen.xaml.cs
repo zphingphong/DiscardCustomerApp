@@ -18,9 +18,9 @@ namespace com.panik.discard {
 				await Navigation.PushAsync (storeCardScreen);
 			};
 
-//			MessagingCenter.Subscribe<AddStoreScreen, StoreObj> (this, "NewStoreAdded", (sender, newStore) => {
-//				stores.Add(newStore);
-//			});
+			MessagingCenter.Subscribe<AddStoreScreen, StoreObj> (this, "NewStoreAdded", (sender, newStore) => {
+				stores.Add(newStore);
+			});
 
 			MessagingCenter.Subscribe<StoreCardScreen> (this, "FinishStoreCard", (sender) => {
 				storeListView.SelectedItem = null;

@@ -34,6 +34,7 @@ namespace com.panik.discard {
 			} else {
 				userObj = new UserObj ();
 				userObj.stores = new List<StoreObj> ();
+				userObj.cards = new List<CardObj> ();
 				MainPage = new LoginScreen ();
 			}
 		}

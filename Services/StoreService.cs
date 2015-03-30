@@ -55,7 +55,9 @@ namespace com.panik.discard {
 			}
 			JsonValue resultObj = JsonValue.Parse (result);
 			if ((bool)resultObj ["success"]) {
-				return UserObj.ParseFromJson (((JsonObject)resultObj ["user"]).ToString ());
+				UserObj userObj = UserObj.ParseFromJson (((JsonObject)resultObj ["user"]).ToString ());
+				userObj.id = (string)resultObj ["user"] ["_id"];
+				return userObj;
 			} else {
 				return null;
 			}
