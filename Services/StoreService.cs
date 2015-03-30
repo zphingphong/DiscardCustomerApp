@@ -48,13 +48,17 @@ namespace com.panik.discard {
 			return resultStoreObj;
 		}
 
-		public bool AddCustomerStore(string storeId, string userId){
+		public UserObj AddCustomerStore(string storeId, string userId){
 			string result = "";
 			using (WebClient wc = new WebClient ()) {
 				result = wc.DownloadString (App.SERVER_ENDPOINT + "store/" + storeId + "/" + userId);
 			}
 			JsonValue resultObj = JsonValue.Parse (result);
-			return (bool)resultObj ["success"];
+			if ((bool)resultObj ["success"]) {
+				return UserObj.ParseFromJson (((JsonObject)resultObj ["user"]).ToString ());
+			} else {
+				return null;
+			}
 		}
 	}
 }

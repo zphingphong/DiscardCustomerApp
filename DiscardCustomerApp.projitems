@@ -35,6 +35,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Screens\AddStoreScreen.xaml.cs">
       <DependentUpon>AddStoreScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DataObjects\CardObj.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataObjects\CardTemplateObj.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Screens\" />

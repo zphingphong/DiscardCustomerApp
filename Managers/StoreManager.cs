@@ -29,8 +29,9 @@ namespace com.panik.discard {
 		}
 
 		public bool AddNewStore (StoreObj storeObj) {
-			storeService.AddCustomerStore (storeObj._id, App.instance.userObj.id);
-			App.instance.userObj.stores.Add (storeObj);
+			UserObj userObj = storeService.AddCustomerStore (storeObj._id, App.instance.userObj.id);
+//			App.instance.userObj.stores.Add (storeObj);
+			App.instance.userObj = userObj;
 			App.instance.userManager.UpdateLocalUser (App.instance.userObj);
 			storeService.GetStoreXsLogo (storeObj, xsLogoDirectoryPath);
 			storeService.GetStoreBgImg (storeObj, bgImgDirectoryPath);

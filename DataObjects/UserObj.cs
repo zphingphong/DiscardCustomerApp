@@ -22,16 +22,16 @@ namespace com.panik.discard {
 		public string userKey { get; set; }
 
 //		[DataMember] // What service does the user use to login
-		public int loginType { get; set; }
+		public loginTypes loginType { get; set; }
 
-		public loginTypes loginTypeEnum { 
-			get {
-				return (loginTypes)loginType;
-			}
-			set {
-				loginType = (int)value;
-			}
-		}
+//		public loginTypes loginTypeEnum { 
+//			get {
+//				return (loginTypes)loginType;
+//			}
+//			set {
+//				loginType = (int)value;
+//			}
+//		}
 
 //		[DataMember]
 		public string name { get; set; }
@@ -64,6 +64,8 @@ namespace com.panik.discard {
 
 //		[DataMember]
 		public List<StoreObj> stores { get; set; }
+
+		public List<StoreObj> cards { get; set; }
 
 		// TODO: Implement these
 //		[DataMember]
