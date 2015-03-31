@@ -14,7 +14,7 @@
 				RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
 				RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
 				BackgroundColor="#88000000">
-				<StackLayout
+				<StackLayout x:Name="storeCardContainer"
 					Padding="0, 5, 0, 0"
 					RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
 					<StackLayout

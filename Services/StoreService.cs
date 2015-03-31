@@ -28,6 +28,7 @@ namespace com.panik.discard {
 			if (!File.Exists (Path.Combine (path, storeObj._id + ".png"))) {
 				using (WebClient wc = new WebClient ()) {
 					wc.DownloadFile (App.IMG_SERVER_ENDPOINT + "images/store_stamp/" + storeObj._id + ".png", Path.Combine (path, storeObj._id + ".png"));
+					wc.DownloadFile (App.IMG_SERVER_ENDPOINT + "images/store_stamp/" + storeObj._id + "free.png", Path.Combine (path, storeObj._id + "free.png"));
 				}
 			}
 		}
