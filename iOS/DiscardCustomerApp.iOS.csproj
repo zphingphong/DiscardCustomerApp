@@ -129,6 +129,10 @@
     <BundleResource Include="Resources\google%402x.png" />
     <BundleResource Include="Resources\bg.png" />
     <BundleResource Include="Resources\bg%402X.png" />
+    <BundleResource Include="Resources\add.png" />
+    <BundleResource Include="Resources\refresh.png" />
+    <BundleResource Include="Resources\add%402X.png" />
+    <BundleResource Include="Resources\refresh%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

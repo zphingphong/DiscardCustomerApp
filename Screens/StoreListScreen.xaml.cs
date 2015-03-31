@@ -34,6 +34,20 @@ namespace com.panik.discard {
 				await DisplayAlert ("No Internet", "Please connect to the Internet to add new store.", "OK");
 			}
 		}
+
+		public async void refreshStoreList (object sender, EventArgs e) {
+			if (DependencyService.Get<IDeviceManager> ().IsDeviceOnline ()) {
+				App.instance.userObj = App.instance.userManager.GetUpdatedUser ();
+				App.instance.userManager.UpdateLocalUser (App.instance.userObj);
+				App.instance.storeManager.GetNewStoresAssets (App.instance.userObj);
+				foreach (StoreObj store in App.instance.userObj.stores) {
+					store.uiXsLogoImagePath = App.instance.storeManager.xsLogoDirectoryPath + store._id + ".png";
+				}
+				storeListView.ItemsSource = App.instance.userObj.stores;
+			} else {
+				await DisplayAlert ("No Internet", "Please connect to the Internet to add new store.", "OK");
+			}
+		}
 	}
 }
 
