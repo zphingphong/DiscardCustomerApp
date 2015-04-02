@@ -11,8 +11,10 @@ namespace com.panik.discard {
 		public UserManager userManager;
 		public StoreManager storeManager;
 		public static object fileLocker;
-		public const string SERVER_ENDPOINT = "http://192.168.1.35:3000/";
-		public const string IMG_SERVER_ENDPOINT = "http://192.168.1.35:3000/";
+//		public const string SERVER_ENDPOINT = "http://192.168.1.35:3000/";
+//		public const string IMG_SERVER_ENDPOINT = "http://192.168.1.35:3000/";
+		public const string SERVER_ENDPOINT = "http://stage.discardapp.com/";
+		public const string IMG_SERVER_ENDPOINT = "http://stage.discardapp.com/";
 		public UserObj userObj;
 		private bool localUserNeedUpdate = false;
 
