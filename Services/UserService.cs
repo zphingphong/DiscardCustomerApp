@@ -84,6 +84,18 @@ namespace com.panik.discard {
 			using (WebClient wc = new WebClient ()) {
 				result = wc.DownloadString (App.SERVER_ENDPOINT + "user/" + userId);
 			}
+			return ParseUserFronResult(result);
+		}
+
+		public async Task<UserObj> GetUserFromServerTaskAsync (string userId){
+			string result = "";
+			using (WebClient wc = new WebClient ()) {
+				result = await wc.DownloadStringTaskAsync (App.SERVER_ENDPOINT + "user/" + userId);
+			}
+			return ParseUserFronResult(result);
+		}
+
+		private UserObj ParseUserFronResult(string result){
 			JsonValue resultObj = JsonValue.Parse (result);
 			UserObj resultUserObj = null;
 			if ((bool)resultObj ["success"]) {

@@ -5,44 +5,60 @@
 	x:Class="com.panik.discard.AddStoreScreen"
 	Title="New Store">
 	<ContentPage.Content>
-		<StackLayout
-			Padding="10, 10, 10, 0" x:Name="addScreenContainer">
-			<Entry
-				Placeholder="Store ID"
-				Text="{Binding storeId, Mode=OneWayToSource}"
-				Keyboard="Numeric">
-			</Entry>
+		<RelativeLayout>
 			<StackLayout
-				Orientation="Horizontal">
+				Padding="10, 10, 10, 0"
+				x:Name="addScreenContainer"
+				RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
+				<Entry
+					Placeholder="Store ID"
+					Text="{Binding storeId, Mode=OneWayToSource}"
+					Keyboard="Numeric">
+				</Entry>
 				<StackLayout
-					HorizontalOptions="FillAndExpand">
-					<Button
-						Clicked="findStore"
-						Style="{StaticResource ButtonStyle}"
-						Text="Find">
-					</Button>
+					Orientation="Horizontal">
+					<StackLayout
+						HorizontalOptions="FillAndExpand">
+						<Button
+							Clicked="findStore"
+							Style="{StaticResource ButtonStyle}"
+							Text="Find">
+						</Button>
+					</StackLayout>
+					<StackLayout
+						HorizontalOptions="FillAndExpand">
+						<Button
+							Clicked="addStore"
+							Style="{StaticResource ButtonStyle}"
+							Text="Add"
+							IsEnabled="false"
+							x:Name="addBtn">
+						</Button>
+					</StackLayout>
 				</StackLayout>
-				<StackLayout
-					HorizontalOptions="FillAndExpand">
-					<Button
-						Clicked="addStore"
-						Style="{StaticResource ButtonStyle}"
-						Text="Add" IsEnabled="false"
-						x:Name="addBtn">
-					</Button>
-				</StackLayout>
+				<Image
+					Source="{Binding uiXsLogoImagePath}" />
+				<Label
+					Text="{Binding address.street}"
+					XAlign="Center">
+				</Label>
+				<Label
+					Text="{Binding address.city}, {Binding address.province}, {Binding address.postalCode}"
+					XAlign="Center">
+				</Label>
+				<Label
+					Text="{Binding phones[0]}"
+					XAlign="Center">
+				</Label>
 			</StackLayout>
-			<Image
-				Source="{Binding uiXsLogoImagePath}" />
-			<Label
-				Text="{Binding address.street}" XAlign="Center">
-			</Label>
-			<Label
-				Text="{Binding address.city}, {Binding address.province}, {Binding address.postalCode}" XAlign="Center">
-			</Label>
-			<Label
-				Text="{Binding phones[0]}" XAlign="Center">
-			</Label>
-		</StackLayout>
+			<ActivityIndicator
+				x:Name="loadingMask"
+				Color="#FF9500"
+				IsRunning="false"
+				VerticalOptions="CenterAndExpand"
+				HorizontalOptions="CenterAndExpand"
+				RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.47}"
+				RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.40}" />
+		</RelativeLayout>
 	</ContentPage.Content>
 </ContentPage>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace com.panik.discard {
 	public class StoreManager {
@@ -24,12 +25,12 @@ namespace com.panik.discard {
 			}
 		}
 
-		public StoreObj FindNewStore (int storeId) {
-			return storeService.GetStoreFromServer (storeId);
+		public async Task<StoreObj> FindNewStore (int storeId) {
+			return await storeService.GetStoreFromServer (storeId);
 		}
 
-		public bool AddNewStore (StoreObj storeObj) {
-			UserObj userObj = storeService.AddCustomerStore (storeObj._id, App.instance.userObj.id);
+		public async Task<bool> AddNewStore (StoreObj storeObj) {
+			UserObj userObj = await storeService.AddCustomerStore (storeObj._id, App.instance.userObj.id);
 //			App.instance.userObj.stores.Add (storeObj);
 			App.instance.userObj = userObj;
 			App.instance.userManager.UpdateLocalUser (App.instance.userObj);

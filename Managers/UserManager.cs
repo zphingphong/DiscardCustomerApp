@@ -90,6 +90,12 @@ namespace com.panik.discard {
 			return userObj;
 		}
 
+		public async Task<UserObj> GetUpdatedUserTaskAsync () {
+			UserObj userObj = this.GetExistingUser ();
+			userObj = await userService.GetUserFromServerTaskAsync (userObj.id);
+			return userObj;
+		}
+
 		public void UpdateLocalUser (UserObj userObj) {
 			userAccess.CreateUser (userObj);
 		}

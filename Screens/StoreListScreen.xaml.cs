@@ -7,9 +7,7 @@ namespace com.panik.discard {
 	public partial class StoreListScreen : ContentPage {
 		public StoreListScreen (List<StoreObj> stores, StoreManager storeManager) {
 			InitializeComponent ();
-			foreach (StoreObj store in stores) {
-				store.uiXsLogoImagePath = storeManager.xsLogoDirectoryPath + store._id + ".png";
-			}
+			this.PrepareStoreLogo (stores, storeManager);
 			storeListView.ItemsSource = stores;
 			this.BindingContext = storeManager;
 
@@ -19,7 +17,8 @@ namespace com.panik.discard {
 			};
 
 			MessagingCenter.Subscribe<AddStoreScreen, StoreObj> (this, "NewStoreAdded", (sender, newStore) => {
-				stores.Add(newStore);
+				this.PrepareStoreLogo (App.instance.userObj.stores, storeManager);
+				storeListView.ItemsSource = App.instance.userObj.stores;
 			});
 
 			MessagingCenter.Subscribe<StoreCardScreen> (this, "FinishStoreCard", (sender) => {
@@ -36,16 +35,22 @@ namespace com.panik.discard {
 		}
 
 		public async void refreshStoreList (object sender, EventArgs e) {
+			loadingMask.IsRunning = true;
 			if (DependencyService.Get<IDeviceManager> ().IsDeviceOnline ()) {
-				App.instance.userObj = App.instance.userManager.GetUpdatedUser ();
+				App.instance.userObj = await App.instance.userManager.GetUpdatedUserTaskAsync ();
 				App.instance.userManager.UpdateLocalUser (App.instance.userObj);
 				App.instance.storeManager.GetNewStoresAssets (App.instance.userObj);
-				foreach (StoreObj store in App.instance.userObj.stores) {
-					store.uiXsLogoImagePath = App.instance.storeManager.xsLogoDirectoryPath + store._id + ".png";
-				}
+				this.PrepareStoreLogo (App.instance.userObj.stores, App.instance.storeManager);
 				storeListView.ItemsSource = App.instance.userObj.stores;
 			} else {
 				await DisplayAlert ("No Internet", "Please connect to the Internet to add new store.", "OK");
+			}
+			loadingMask.IsRunning = false;
+		}
+
+		private void PrepareStoreLogo(List<StoreObj> stores, StoreManager storeManager){
+			foreach (StoreObj store in stores) {
+				store.uiXsLogoImagePath = storeManager.xsLogoDirectoryPath + store._id + ".png";
 			}
 		}
 	}

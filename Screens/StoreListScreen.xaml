@@ -5,45 +5,48 @@
 	x:Class="com.panik.discard.StoreListScreen"
 	Title="Stores">
 	<ContentPage.Content>
-		<StackLayout
-			Spacing="0">
-			<SearchBar
-				Placeholder="Search by store name" />
-			<ListView
-				RowHeight="60"
-				x:Name="storeListView"
-				SeparatorVisibility="None">
-				<ListView.ItemTemplate>
-					<DataTemplate>
-						<ViewCell>
-							<ViewCell.View>
-								<StackLayout
-									Orientation="Horizontal">
-									<Image
-										Source="{Binding uiXsLogoImagePath}" />
-									<StackLayout>
-										<Label
-											Text="{Binding name}">
-										</Label>
-										<Label
-											Text="{Binding address.street}, {Binding address.city}">
-										</Label>
+		<RelativeLayout>
+			<StackLayout
+				RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+				Spacing="0">
+				<SearchBar
+					Placeholder="Search by store name" />
+				<ListView
+					RowHeight="60"
+					x:Name="storeListView"
+					SeparatorVisibility="None">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<ViewCell.View>
+									<StackLayout
+										Orientation="Horizontal">
+										<Image
+											Source="{Binding uiXsLogoImagePath}" />
+										<StackLayout>
+											<Label
+												Text="{Binding name}">
+											</Label>
+											<Label
+												Text="{Binding address.street}, {Binding address.city}">
+											</Label>
+										</StackLayout>
 									</StackLayout>
-								</StackLayout>
-							</ViewCell.View>
-						</ViewCell>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
-			<!--				<ActivityIndicator
-					x:Name="loadingMask"
-					Color="#FF9500"
-					IsRunning="true"
-					VerticalOptions="CenterAndExpand"
-					HorizontalOptions="CenterAndExpand"
-					RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.50}"
-					RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.00}" />-->
-		</StackLayout>
+								</ViewCell.View>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+			<ActivityIndicator
+				x:Name="loadingMask"
+				Color="#FF9500"
+				IsRunning="false"
+				VerticalOptions="CenterAndExpand"
+				HorizontalOptions="CenterAndExpand"
+				RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.47}"
+				RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.40}" />
+		</RelativeLayout>
 	</ContentPage.Content>
 	<ContentPage.ToolbarItems>
 		<ToolbarItem

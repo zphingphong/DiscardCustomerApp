@@ -39,6 +39,7 @@ namespace com.panik.discard.ios {
 						App.instance.userManager.LoginUser(eventArgs.Account, eventArgs.Account.Properties ["access_token"]);
 					} else {
 						// The user cancelled
+						((LoginScreen)App.instance.MainPage).CancelLogin();
 					}
 				};
 

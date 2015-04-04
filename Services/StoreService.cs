@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Json;
+using System.Threading.Tasks;
 
 namespace com.panik.discard {
 	public class StoreService {
@@ -33,10 +34,10 @@ namespace com.panik.discard {
 			}
 		}
 
-		public StoreObj GetStoreFromServer(int storeId){
+		public async Task<StoreObj> GetStoreFromServer(int storeId){
 			string result = "";
 			using (WebClient wc = new WebClient ()) {
-				result = wc.DownloadString (App.SERVER_ENDPOINT + "store/" + storeId);
+				result = await wc.DownloadStringTaskAsync (App.SERVER_ENDPOINT + "store/" + storeId);
 			}
 			JsonValue resultObj = JsonValue.Parse (result);
 			StoreObj resultStoreObj = null;
@@ -49,10 +50,10 @@ namespace com.panik.discard {
 			return resultStoreObj;
 		}
 
-		public UserObj AddCustomerStore(string storeId, string userId){
+		public async Task<UserObj> AddCustomerStore(string storeId, string userId){
 			string result = "";
 			using (WebClient wc = new WebClient ()) {
-				result = wc.DownloadString (App.SERVER_ENDPOINT + "store/" + storeId + "/" + userId);
+				result = await wc.DownloadStringTaskAsync (App.SERVER_ENDPOINT + "store/" + storeId + "/" + userId);
 			}
 			JsonValue resultObj = JsonValue.Parse (result);
 			if ((bool)resultObj ["success"]) {
