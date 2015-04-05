@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Net.Cache;
 using System.Json;
 using System.Threading.Tasks;
 using Xamarin.Auth;
@@ -11,11 +12,16 @@ namespace com.panik.discard {
 		public UserService () {
 		}
 
-		public void GetUserQr(UserObj userObj, string path){
-			if (!File.Exists (Path.Combine (path, userObj.id + ".png"))) {
-				using (WebClient wc = new WebClient ()) {
-					wc.DownloadFile (App.IMG_SERVER_ENDPOINT + "images/user_qr/" + userObj.id + ".png", Path.Combine (path, userObj.id + ".png"));
+		public void GetUserQr (UserObj userObj, string path) {
+			try {
+				if (!File.Exists (Path.Combine (path, userObj.id + ".png"))) {
+					using (WebClient wc = new WebClient ()) {
+						wc.DownloadFile (App.IMG_SERVER_ENDPOINT + "images/user_qr/" + userObj.id + ".png", Path.Combine (path, userObj.id + ".png"));
+					}
 				}
+			} catch (Exception e) {
+				//TODO: Tell the user that there's an error
+				Console.WriteLine (e.ToString());
 			}
 		}
 
@@ -50,56 +56,85 @@ namespace com.panik.discard {
 		}
 
 		public async Task<UserObj> LoginToServerAsync (string userJson) {
-			string result = "";
-			using (WebClient wc = new WebClient ()) {
-				wc.Headers [HttpRequestHeader.ContentType] = "application/json";
-				result = await wc.UploadStringTaskAsync (App.SERVER_ENDPOINT + "user/signin", userJson);
+			try {
+				string result = "";
+				using (WebClient wc = new WebClient ()) {
+					wc.Headers [HttpRequestHeader.ContentType] = "application/json";
+					result = await wc.UploadStringTaskAsync (App.SERVER_ENDPOINT + "user/signin", userJson);
+				}
+				JsonValue resultObj = JsonValue.Parse (result);
+				UserObj resultUserObj = null;
+				if ((bool)resultObj ["success"]) {
+					resultUserObj = UserObj.ParseFromJson (((JsonObject)resultObj ["user"]).ToString ());
+					resultUserObj.id = (string)resultObj ["user"] ["_id"];
+				} else { // Fail to connect to the database
+				}
+				return resultUserObj;
+			} catch (Exception e) {
+				//TODO: Tell the user that there's an error
+				Console.WriteLine (e.ToString());
+				return null;
 			}
-			JsonValue resultObj = JsonValue.Parse (result);
-			UserObj resultUserObj = null;
-			if ((bool)resultObj ["success"]) {
-				resultUserObj = UserObj.ParseFromJson(((JsonObject)resultObj ["user"]).ToString());
-				resultUserObj.id = (string)resultObj ["user"] ["_id"];
-			} else { // Fail to connect to the database
-			}
-			return resultUserObj;
 		}
 
 		public async Task<bool> ChangeDeviceAsync (string userJson) {
-			string result = "";
-			using (WebClient wc = new WebClient ()) {
-				wc.Headers [HttpRequestHeader.ContentType] = "application/json";
-				result = await wc.UploadStringTaskAsync (App.SERVER_ENDPOINT + "user/changedevice", userJson);
-			}
-			JsonValue resultObj = JsonValue.Parse (result);
-			if ((bool)resultObj ["success"]) {
-				return true;
-			} else {
+			try {
+				string result = "";
+				using (WebClient wc = new WebClient ()) {
+					wc.Headers [HttpRequestHeader.ContentType] = "application/json";
+					result = await wc.UploadStringTaskAsync (App.SERVER_ENDPOINT + "user/changedevice", userJson);
+				}
+				JsonValue resultObj = JsonValue.Parse (result);
+				if ((bool)resultObj ["success"]) {
+					return true;
+				} else {
+					return false;
+				}
+			} catch (Exception e) {
+				//TODO: Tell the user that there's an error
+				Console.WriteLine (e.ToString());
 				return false;
 			}
 		}
 
-		public UserObj GetUserFromServer (string userId){
-			string result = "";
-			using (WebClient wc = new WebClient ()) {
-				result = wc.DownloadString (App.SERVER_ENDPOINT + "user/" + userId);
+		public UserObj GetUserFromServer (string userId) {
+			try {
+				string result = "";
+				using (WebClient wc = new WebClient ()) {
+					wc.Headers.Add("Cache-Control", "no-cache");
+					wc.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
+					result = wc.DownloadString (App.SERVER_ENDPOINT + "user/" + userId);
+				}
+				return ParseUserFronResult (result);
+			} catch (Exception e) {
+				//TODO: Tell the user that there's an error
+				Console.WriteLine (e.ToString());
+				return null;
 			}
-			return ParseUserFronResult(result);
 		}
 
-		public async Task<UserObj> GetUserFromServerTaskAsync (string userId){
-			string result = "";
-			using (WebClient wc = new WebClient ()) {
-				result = await wc.DownloadStringTaskAsync (App.SERVER_ENDPOINT + "user/" + userId);
+		public async Task<UserObj> GetUserFromServerTaskAsync (string userId) {
+			try {
+				string result = "";
+				using (WebClient wc = new WebClient ()) {
+					wc.Headers.Add("Cache-Control", "no-cache");
+					wc.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
+					result = await wc.DownloadStringTaskAsync (App.SERVER_ENDPOINT + "user/" + userId);
+				}
+				return ParseUserFronResult (result);
+			} catch (Exception e) {
+				//TODO: Tell the user that there's an error
+				//				await DisplayAlert ("Oops!", "Something went wrong on our server. Please try again later.", "OK");
+				Console.WriteLine (e.ToString());
+				return null;
 			}
-			return ParseUserFronResult(result);
 		}
 
-		private UserObj ParseUserFronResult(string result){
+		private UserObj ParseUserFronResult (string result) {
 			JsonValue resultObj = JsonValue.Parse (result);
 			UserObj resultUserObj = null;
 			if ((bool)resultObj ["success"]) {
-				resultUserObj = UserObj.ParseFromJson(((JsonObject)resultObj ["user"]).ToString());
+				resultUserObj = UserObj.ParseFromJson (((JsonObject)resultObj ["user"]).ToString ());
 				resultUserObj.id = (string)resultObj ["user"] ["_id"];
 			} else { // Fail to connect to the database
 			}
