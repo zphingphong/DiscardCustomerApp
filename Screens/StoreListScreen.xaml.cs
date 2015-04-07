@@ -43,7 +43,7 @@ namespace com.panik.discard {
 				this.PrepareStoreLogo (App.instance.userObj.stores, App.instance.storeManager);
 				storeListView.ItemsSource = App.instance.userObj.stores;
 			} else {
-				await DisplayAlert ("No Internet", "Please connect to the Internet to add new store.", "OK");
+				await DisplayAlert ("No Internet", "Please connect to the Internet to refresh.", "OK");
 			}
 			loadingMask.IsRunning = false;
 		}

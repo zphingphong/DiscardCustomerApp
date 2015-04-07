@@ -10,8 +10,8 @@
 				RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
 				RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
 				Spacing="0">
-				<SearchBar
-					Placeholder="Search by store name" />
+<!--				<SearchBar
+					Placeholder="Search by store name" />-->
 				<ListView
 					RowHeight="60"
 					x:Name="storeListView"
